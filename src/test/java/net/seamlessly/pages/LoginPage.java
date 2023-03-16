@@ -24,4 +24,32 @@ public class LoginPage {
         loginButton.click();
     }
 
+    @FindBy(css = "a#lost-password")
+    public WebElement forgotPassword;
+
+    @FindBy(xpath = "//*[normalize-space(text()) = 'Log in with a device']")
+    public WebElement linkLogWithDevice;
+
+    @FindBy(xpath = "//*[normalize-space(text()) = 'Seamlessly']")
+    public WebElement divSeamlessly;
+
+    @FindBy(xpath = "//*[text() = 'Seamlessly']")
+    public WebElement linkSeamlessly;
+
+    @FindBy(xpath = "//*[normalize-space(text())= 'Seamlessly – Impeccable Efficiency']")
+    public WebElement impeccableEfficiency;//TODO check this locator
+
+    @FindBy(xpath = "//a[@class='toggle-password']")
+    public WebElement passwordEye;
+
+
+    @FindBy(css = "p.warning.wrongPasswordMsg")
+    public WebElement wrongPassword;
+
+    @FindBy(xpath = "//input[@id='user' and @required='required']")
+    public WebElement blankText;
+
+    @FindBy(css = "input#reset-password-submit")
+    public WebElement resetPassword;
+
 }

@@ -1,5 +1,6 @@
 @SEAMLES10-364
-Feature: Default
+Feature: Login functionality
+
 
 	Background:
 		#@SEAMLES10-362
