@@ -4,7 +4,7 @@ Feature: Login functionality
 
 	Background:
 		#@SEAMLES10-362
-		    Given User is on the login page
+		    Given user is on the login page
 		
 
 	#As a user, I should be able to login.
@@ -52,7 +52,6 @@ Feature: Login functionality
 		      | aaaa1111    | jirajiraş   |
 		      | aaaa1111    | Employee123 |
 		      | Employee170 | jirajiraş   |
-		      | EMPLOYEE170 | Employee123 |	
 
 	#User Story :
 	#
@@ -62,6 +61,13 @@ Feature: Login functionality
 	#2-User can not login with any invalid credentials
 	#-"Wrong username or password." should be displayed for invalid credentials
 	#-"{*}{color:#FF0000}Please fill out this field{color}{*}" message should be displayed if the password or username is empty
+@SEAMLES10-466
+	Scenario: Login case insensitive bug
+		When user can write invalid username "EMPLOYEE170"
+		And user can write invalid password "Employee123"
+		And user can click login button
+		Then user cannot see dashboard and sees the notice wrong message
+
 	@SEAMLES10-367
 	Scenario Outline: AC2-TC2 Verify that user cannot login with blank credentials
 		When user can write invalid username "<username>"

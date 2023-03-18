@@ -14,7 +14,7 @@ import org.openqa.selenium.Keys;
 public class Login_step_definitions {
     LoginPage loginPage = new LoginPage();
 
-    @Given("User is on the login page")
+    @Given("user is on the login page")
     public void userIsOnTheHomePage() {
         Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
     }
