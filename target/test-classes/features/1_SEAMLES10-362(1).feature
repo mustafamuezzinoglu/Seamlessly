@@ -1,4 +1,4 @@
-@SEAMLES10-364
+@SEAMLES10-364 @regression
 Feature: Login functionality
 
 
@@ -76,9 +76,9 @@ Feature: Login functionality
 		    Then user cannot see dashboard and sees the notice blank message
 		    Examples:
 		      | username    | password    |
-		      |             | Employee123 |
-		      | Employee170 |             |
-		      |             |             |	
+		      || Employee123 |
+		      | Employee170 ||
+		      |||
 
 	#User Story :
 	#

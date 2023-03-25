@@ -1,9 +1,0 @@
-net\seamlessly\pages\LoginPage.class
-net\seamlessly\step_definitions\Logout_step_definitions.class
-net\seamlessly\pages\DashboardPage.class
-net\seamlessly\step_definitions\Hooks.class
-net\seamlessly\runners\CukesRunner.class
-net\seamlessly\utility\ConfigurationReader.class
-net\seamlessly\step_definitions\Login_step_definitions.class
-net\seamlessly\utility\BrowserUtility.class
-net\seamlessly\utility\Driver.class

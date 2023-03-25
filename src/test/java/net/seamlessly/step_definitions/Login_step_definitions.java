@@ -20,39 +20,39 @@ public class Login_step_definitions {
     }
 
 
-    @Then("user can see dashboard")
-    public void userCanSeeDashboard() {
+    @Then("user sees dashboard")
+    public void userSeesDashboard() {
         Assert.assertTrue(Driver.getDriver().getTitle().toLowerCase().contains("dashboard"));
     }
 
-    @When("user can click login button")
-    public void userCanClickLoginButton() {
+    @When("user clicks login button")
+    public void userClicksLoginButton() {
         loginPage.loginButton.click();
     }
 
-    @When("user can write valid username")
-    public void userCanWriteValidUsername() {
+    @When("user writes valid username")
+    public void userWritesValidUsername() {
         loginPage.userName.sendKeys("Employee170");
     }
 
-    @And("user can write valid password")
-    public void userCanWriteValidPassword() {
+    @And("user writes valid password")
+    public void userWritesValidPassword() {
         loginPage.inputPassword.sendKeys("Employee123");
     }
 
-    @When("user can press enter key")
-    public void userCanPressEnterKey() {
+    @When("user presses enter key")
+    public void userPressesEnterKey() {
         loginPage.inputPassword.click();
         loginPage.inputPassword.sendKeys(Keys.ENTER);
     }
 
-    @When("user can write invalid username {string}")
-    public void userCanWriteInvalidUsername(String username) {
+    @When("user writes invalid username {string}")
+    public void userWritesInvalidUsername(String username) {
         loginPage.userName.sendKeys(username);
     }
 
-    @When("user can write invalid password {string}")
-    public void userCanWriteInvalidPassword(String password) {
+    @When("user writes invalid password {string}")
+    public void userWritesInvalidPassword(String password) {
         loginPage.inputPassword.sendKeys(password);
     }
 
@@ -71,46 +71,46 @@ public class Login_step_definitions {
         }
     }
 
-    @Then("user can see the password in a form of dots")
-    public void userCanSeeThePasswordInAFormOfDots() {
+    @Then("user sees the password in a form of dots")
+    public void userSeesThePasswordInAFormOfDots() {
         if (loginPage.inputPassword.getAttribute("type").equals("password")) {
             Assert.assertEquals(loginPage.inputPassword.getAttribute("value"), "Employee123");
         }
     }
 
-    @And("User can click to toggle button")
-    public void userCanClickToToggleButton() {
+    @And("User clicks to toggle button")
+    public void userClicksToToggleButton() {
         loginPage.passwordEye.click();
     }
 
-    @Then("User can see the password")
-    public void userCanSeeThePassword() {
+    @Then("User sees the password")
+    public void userSeesThePassword() {
         Assert.assertEquals(loginPage.inputPassword.getAttribute("value"), "Employee123");
     }
 
-    @Then("user can see the Forgot password link")
-    public void userCanSeeTheForgotPasswordLink() {
+    @Then("user sees the Forgot password link")
+    public void userSeesTheForgotPasswordLink() {
         Assert.assertTrue(loginPage.forgotPassword.isDisplayed());
     }
 
-    @And("User can click Forgot password link")
-    public void userCanClickForgotPasswordLink() {
+    @And("User clicks Forgot password link")
+    public void userClicksForgotPasswordLink() {
         loginPage.forgotPassword.click();
         BrowserUtility.sleep(2);
     }
 
-    @Then("user can see reset password link")
-    public void userCanSeeResetPasswordLink() {
+    @Then("user sees reset password link")
+    public void userSeesResetPasswordLink() {
         Assert.assertTrue(loginPage.resetPassword.isDisplayed());
     }
 
-    @Then("user can see username placeholder")
-    public void userCanSeeUsernamePlaceholder() {
+    @Then("user sees username placeholder")
+    public void userSeesUsernamePlaceholder() {
         Assert.assertEquals(loginPage.userName.getAttribute("placeholder"), "Username or email");
     }
 
-    @Then("user can see password placeholder")
-    public void userCanSeePasswordPlaceholder() {
+    @Then("user sees password placeholder")
+    public void userSeesPasswordPlaceholder() {
         Assert.assertEquals(loginPage.inputPassword.getAttribute("placeholder"), "Password");
     }
 

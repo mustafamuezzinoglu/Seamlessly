@@ -10,21 +10,21 @@ import org.junit.Assert;
 public class Logout_step_definitions {
 
         DashboardPage dashboardPage = new DashboardPage();
-    @When("user can click the user avatar scrolldown area")
-    public void user_can_click_the_user_avatar_scrolldown_area() {
+    @When("user clicks the user avatar scrolldown area")
+    public void user_clicks_the_user_avatar_scrolldown_area() {
         dashboardPage.userAvatar.click();
     }
-    @When("user can click the Log out button")
-    public void user_can_click_the_log_out_button() {
+    @When("user clicks the Log out button")
+    public void user_clicks_the_log_out_button() {
         dashboardPage.logOut.click();
     }
-    @Then("user can log out")
-    public void user_can_log_out() {
+    @Then("user logs out")
+    public void user_logs_out() {
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Seamlessly"));
     }
 
-    @And("user can click to step back button")
-    public void userCanClickToStepBackButton() {
+    @And("user clicks to step back button")
+    public void userClicksToStepBackButton() {
         Driver.getDriver().navigate().back();
     }
 
