@@ -7,7 +7,7 @@ import net.seamlessly.pages.DashboardPage;
 import net.seamlessly.utility.Driver;
 import org.junit.Assert;
 
-public class Logout_step_definitions {
+public class LogoutStepDefs {
 
         DashboardPage dashboardPage = new DashboardPage();
     @When("user clicks the user avatar scrolldown area")
@@ -32,4 +32,6 @@ public class Logout_step_definitions {
     public void userCannotGoToHomePageAgain() {
         Assert.assertTrue(Driver.getDriver().getTitle().contains("Seamlessly"));
     }
+
+
 }

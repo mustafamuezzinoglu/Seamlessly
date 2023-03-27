@@ -11,7 +11,7 @@ import net.seamlessly.utility.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
 
-public class Login_step_definitions {
+public class LoginStepDefs {
     LoginPage loginPage = new LoginPage();
 
     @Given("user is on the login page")
@@ -113,5 +113,8 @@ public class Login_step_definitions {
     public void userSeesPasswordPlaceholder() {
         Assert.assertEquals(loginPage.inputPassword.getAttribute("placeholder"), "Password");
     }
-
+    @Given("user login with valid credentials")
+    public void userLoginWithValidCredentials() {
+        loginPage.login(ConfigurationReader.getProperty("username"),ConfigurationReader.getProperty("password"));
+    }
 }

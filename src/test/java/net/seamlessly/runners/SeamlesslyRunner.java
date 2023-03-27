@@ -17,5 +17,5 @@ import org.junit.runner.RunWith;
         dryRun = false,
         publish = false
 )
-public class CukesRunner {
+public class SeamlesslyRunner {
 }
