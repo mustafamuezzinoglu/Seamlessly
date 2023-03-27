@@ -38,7 +38,7 @@ public class LoginPage {
     public WebElement linkSeamlessly;
 
     @FindBy(xpath = "//*[normalize-space(text())= 'Seamlessly – Impeccable Efficiency']")
-    public WebElement impeccableEfficiency;//TODO check this locator
+    public WebElement impeccableEfficiency;
 
     @FindBy(xpath = "//a[@class='toggle-password']")
     public WebElement passwordEye;
