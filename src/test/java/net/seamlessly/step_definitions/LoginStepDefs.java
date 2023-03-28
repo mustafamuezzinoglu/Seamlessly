@@ -117,4 +117,5 @@ public class LoginStepDefs {
     public void userLoginWithValidCredentials() {
         loginPage.login(ConfigurationReader.getProperty("username"),ConfigurationReader.getProperty("password"));
     }
+
 }
