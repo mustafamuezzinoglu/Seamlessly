@@ -20,11 +20,6 @@ public class CalendarStepDefs {
 
     CalendarPage calendarPage = new CalendarPage();
 
-    @Given("the user navigate to {string} module")
-    public void the_user_navigate_to_module(String moduleName) {
-
-        new CalendarPage().navigateToModule(moduleName);
-    }
 
     @When("User click on the calendar view dropdown menu")
     public void user_click_on_the_calendar_view_dropdown_menu() {
