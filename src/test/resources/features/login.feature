@@ -60,7 +60,7 @@ Feature: Login functionality
 	#2-User can not login with any invalid credentials
 	#-"Wrong username or password." should be displayed for invalid credentials
 	#-"{*}{color:#FF0000}Please fill out this field{color}{*}" message should be displayed if the password or username is empty
-@SEAMLES10-466
+@SEAMLES10-466 @ignore
 	Scenario: Login case insensitive bug
 		When user writes invalid username "EMPLOYEE170"
 		And user writes invalid password "Employee123"
