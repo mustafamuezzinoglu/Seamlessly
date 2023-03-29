@@ -16,19 +16,19 @@ Feature: Calendar Module
     Given user login with valid credentials
     And   the user navigate to "Calendar" module
 
-
+  @SEAMLES10-608
   Scenario:  User can display daily calendar view
     When User click on the calendar view dropdown menu
     And  User click on "day" option
     Then User should see daily calendar view
 
-
+@SEAMLES10-609
   Scenario:  User can display weekly calendar view
     When  User click on the calendar view dropdown menu
     And  User click on "week" option
     Then User should see weekly calendar view
 
-
+@SEAMLES10-610
   Scenario:  User can display monthly calendar view
     When  User click on the calendar view dropdown menu
     And  User click on "month" option
