@@ -9,10 +9,6 @@ public class UploadStepDefs extends BasePage {
 
     UploadPage uploadPage = new UploadPage();
 
-    @Given("user navigate to {string} module")
-    public void user_navigate_to_module(String moduleName) {
-        uploadPage.navigateToModule(moduleName);
-    }
 
 
     @When("user clicks the + button")
