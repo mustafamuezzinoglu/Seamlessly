@@ -2,7 +2,7 @@ Feature: Files module functionalities
 
   User Story :As a user, I should be able to add a file to favorites, rename any file and give some comments on any file.
 
-  Acceptance Criterias:
+  Acceptance Criteria:
 
   1.User can add any file to favorites from its own three dots menu
   2.User can rename any file from its own three dots menu
