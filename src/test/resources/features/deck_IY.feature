@@ -22,3 +22,5 @@ Feature: Deck Module Functionality
     And user enters "My First Board" as the board name
     And user clicks on the Right Arrow button or push Enter
     Then user should see a new board with the name "My First Board" under All Boards Menu
+
+Scenario: User verifies warning message "Please fill out this field."
