@@ -14,7 +14,7 @@ Feature: Calendar Module
 
   Background:
     Given user login with valid credentials
-    And   the user navigate to "Calendar" module
+    And   user navigates to "Calendar" module
 
   @SEAMLES10-608
   Scenario:  User can display daily calendar view
