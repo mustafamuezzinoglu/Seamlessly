@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class FilesPage extends BasePage{
 
-	@FindBy(xpath = "//span[text()='Remove from favorites']")
+	@FindBy(xpath = "//span[text()='Add to favorites']")
 	public WebElement addToFavoritesBtn;
 
 	@FindBy(linkText = "Favorites")

@@ -15,7 +15,7 @@ Feature: Files module functionalities
 
 
   Scenario: verify user add any file to favorites from its own three dots menu
-    When user clicks on "Readme" file three dots button
+    When user clicks on "Readme.md" file three dots button
     And user clicks on remove from favorites button
     And user clicks on favorites tab button
     Then user see starred "Readme" file
