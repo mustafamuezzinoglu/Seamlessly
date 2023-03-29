@@ -15,9 +15,9 @@ Feature: seamlessly upload function
 
   Background: user is on the Files module
     Given user login with valid credentials
-    Given user navigate to "Files" module
+    Given user navigates to "Files" module
 
-  @mm
+
   Scenario:  User can upload a file
     When user clicks the + button
     And user clicks the uploadFile link
