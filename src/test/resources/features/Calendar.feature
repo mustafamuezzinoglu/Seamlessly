@@ -1,3 +1,4 @@
+@123
 Feature: Calendar Module
   User Story :
 
@@ -12,10 +13,23 @@ Feature: Calendar Module
   User can delete any event through the Monthly Calendar view by clicking on the event and then using “more” option
 
   Background:
-    Given the user is logged in
+    Given user login with valid credentials
     And   the user navigate to "Calendar" module
 
-  Scenario: Daily calendar view
-    Given the user click three dot icon
-    When  the user click day icon
-    Then  the user can see daily calendar view
+
+  Scenario:  User can display daily calendar view
+    When User click on the calendar view dropdown menu
+    And  User click on "day" option
+    Then User should see daily calendar view
+
+
+  Scenario:  User can display weekly calendar view
+    When  User click on the calendar view dropdown menu
+    And  User click on "week" option
+    Then User should see weekly calendar view
+
+
+  Scenario:  User can display monthly calendar view
+    When  User click on the calendar view dropdown menu
+    And  User click on "month" option
+    Then User should see monthly calendar view
