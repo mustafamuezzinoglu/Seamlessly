@@ -33,3 +33,13 @@ Feature: Calendar Module
     When  User click on the calendar view dropdown menu
     And  User click on "month" option
     Then User should see monthly calendar view
+
+  @SEAMLES10-613
+  Scenario: User  can create a new event  and see it on the calendar
+    When  User  select Monthly view calendar
+    And  User  click on New event button
+    And  User  input "Alumni Meeting" as a new event in placeholder
+    And  User  select beginning time and date
+    And  User  select ending time and date
+    And  User  click on Save  button
+    Then User  should see new event on monthly calendar
