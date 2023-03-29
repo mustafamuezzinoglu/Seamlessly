@@ -18,6 +18,9 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@class='icon-confirm']")
     public WebElement confirmBoardNameButton;
 
+    @FindBy(xpath = "//span[@title='My First Board']")
+    public WebElement boardTitle;
+
 
     // Methods
 
@@ -32,4 +35,13 @@ public class DeckPage extends BasePage {
     public void enterBoardName(String boardName){
         boardNamePlaceholder.sendKeys(boardName);
     }
+
+    public void confirmBoardAdd(){
+        confirmBoardNameButton.click();
+    }
+
+    public void verifyCreatedBoardName(String expected){
+
+    }
+
 }

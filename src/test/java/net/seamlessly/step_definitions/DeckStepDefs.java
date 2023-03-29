@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.DeckPage;
 import net.seamlessly.utility.BrowserUtility;
+import org.junit.Assert;
 
 public class DeckStepDefs {
 
@@ -20,6 +21,7 @@ public class DeckStepDefs {
     @And("user clicks on Add board button")
     public void userClicksOnAddBoardButton() {
         deck.clickOnAddBoard();
+        BrowserUtility.sleep(3);
 
     }
 
@@ -30,11 +32,15 @@ public class DeckStepDefs {
 
     @And("user clicks on the Right Arrow button or push Enter")
     public void userClicksOnTheRightArrowButtonOrPushEnter() {
+        deck.confirmBoardAdd();
+        BrowserUtility.sleep(3);
 
     }
 
     @Then("user should see a new board with the name {string} under All Boards Menu")
-    public void userShouldSeeANewBoardWithTheNameUnderAllBoardsMenu(String boardName) {
+    public void userShouldSeeANewBoardWithTheNameUnderAllBoardsMenu(String expectedboardName) {
+
+        Assert.assertEquals(expectedboardName, deck.boardTitle.getText());
 
     }
 }
