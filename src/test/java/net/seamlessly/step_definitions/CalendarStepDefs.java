@@ -118,5 +118,33 @@ public class CalendarStepDefs {
 
         BrowserUtility.sleep(2);
     }
+    @When("User click {string} on the monthly calendar")
+    public void user_click_any_event_on_the_monthly_calendar(String title) {
+        selectedEvent = calendarPage.getEventLink(date,anyEvent);
+        selectedEvent.click();
+        BrowserUtility.sleep(2);
+    }
+
+    @When("User click More button")
+    public void user_click_more_button() {
+        calendarPage.moreButton.click();
+    }
+
+    @When("User click tree dot dropdown menu")
+    public void user_click_tree_dot_dropdown_menu() {
+        calendarPage.sideBarDropdown.click();
+    }
+
+    @When("User click delete button")
+    public void user_click_delete_button() {
+        calendarPage.deleteButton.click();
+    }
+
+    @Then("User should see the event was erased")
+    public void user_should_see_the_event_was_erased() {
+
+        BrowserUtility.sleep(2);
+        calendarPage.checkStaleElementTrue(selectedEvent);
+    }
 
 }
