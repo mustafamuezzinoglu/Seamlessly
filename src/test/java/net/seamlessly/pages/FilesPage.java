@@ -1,6 +1,8 @@
 package net.seamlessly.pages;
 
 
+import net.seamlessly.utility.Driver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
