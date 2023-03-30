@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "net/seamlessly/step_definitions",
-        tags = "@wip",
+        tags = "",
         stepNotifications = true,
         dryRun = false,
         publish = false
