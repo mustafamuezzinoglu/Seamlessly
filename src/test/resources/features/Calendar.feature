@@ -43,3 +43,11 @@ Feature: Calendar Module
     And  User  select ending time and date
     And  User  click on Save  button
     Then User  should see new event on monthly calendar
+
+  @SEAMLES10-623
+  Scenario: User can delete any event through the Monthly Calendar
+    When User click "any event" on the monthly calendar
+    And  User click More button
+    And  User click tree dot dropdown menu
+    And  User click delete button
+    Then User should see the event was erased
