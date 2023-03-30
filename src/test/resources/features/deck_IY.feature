@@ -16,11 +16,21 @@ Feature: Deck Module Functionality
     And   user navigates to "Deck" module
 
   @SEAMLES10-614
-  Scenario: User verifies creating new board
-    When user opens the navigation
+  Scenario: US-015-TC1 Verify that user can create a new board
+    When user opens the navigation menu
     And user clicks on Add board button
-    And user enters "My First Board" as the board name
+    And user enters a name as the board name
     And user clicks on the Right Arrow button or push Enter
-    Then user should see a new board with the name "My First Board" under All Boards Menu
+    Then user should see a new board with the given name under All Boards Menu
 
-Scenario: User verifies warning message "Please fill out this field."
+  @SEAMLES10-615
+  Scenario: US-015-TC2 User can create a new list of card/task under any board
+
+    When user is on board page
+    And user selects any board from the All boards
+    And user enters a list name for the selected board
+    Then user should see the created list name for
+
+
+
+
