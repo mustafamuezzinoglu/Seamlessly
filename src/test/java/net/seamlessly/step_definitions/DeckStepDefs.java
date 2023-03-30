@@ -74,7 +74,6 @@ public class DeckStepDefs {
         deck.selectBoard(boardName);
         BrowserUtility.sleep(3);
 
-
     }
 
     @And("user enters a {string} for the selected Board Title")

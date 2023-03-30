@@ -15,7 +15,7 @@ Feature: Deck Module Functionality
     Given user login with valid credentials
     And   user navigates to "Deck" module
 
-
+  @SEAMLES10-614
   Scenario Outline: US-015-TC1 Verify that user can create a new board
     When user opens the navigation menu
     And user clicks on Add board button
@@ -28,7 +28,7 @@ Feature: Deck Module Functionality
       | My Diary       |
       | Bills          |
 
-
+  @SEAMLES10-636
   Scenario Outline: US-015-TC2-1 User can create a new list of card/task under any board
 
     When user is on board page
@@ -42,7 +42,7 @@ Feature: Deck Module Functionality
       | Notebook   |
       | Drinks     |
 
-  @wip
+  @SEAMLES10-637
   Scenario Outline: US-015-TC2-2 User can add a new list of card/task under any board
 
     When user is on board page
