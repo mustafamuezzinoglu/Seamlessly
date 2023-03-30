@@ -28,21 +28,23 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@class='icon-confirm']")
     public WebElement confirmBoardNameButton;
 
-    @FindBy(xpath = "//input[@placeholder='List name']")
-    public WebElement listNamePlaceholder;
-
-    @FindBy(xpath = "//h2[contains(.,'No lists available')]")
-    public WebElement noListMessage;
-
-
     @FindBy(xpath = "/html/body/div[3]/div/ul/li[2]/ul/li/a/span")
     public List<WebElement> boardTitles;
 
-    @FindBy(xpath = "//h3[contains(@class, 'stack__title')]")
+    @FindBy(xpath = "//input[@placeholder='List name']")
+    public WebElement listNamePlaceholder;
+
+       @FindBy(xpath = "//h3[contains(@class, 'stack__title')]")
     public WebElement listName;
+
+    @FindBy(xpath = "//h3[@class='stack__title has-tooltip']")
+    public List<WebElement> listTitles;
 
     @FindBy(xpath = "//input[@class='icon-confirm has-tooltip']")
     public WebElement confirmListNameButton;
+
+    @FindBy(xpath = "(//button[contains(.,'Add list')])[1]")
+    public WebElement addListButton;
 
 
     // Methods
@@ -74,9 +76,22 @@ public class DeckPage extends BasePage {
             boardNames.add(boardName);
         }
         return boardNames;
+
     }
 
-    public void selectBoard(String boardName) {
+    public List<String> getListNames() {
+        // Retrieve the list of board elements
+
+        List<String> listNames = new ArrayList<String>();
+        for (WebElement listTitle : listTitles) {
+            // Get the board name from the title attribute
+            String listName = listTitle.getText();
+            listNames.add(listName);
+        }
+        return listNames;
+    }
+
+    public void selectBoard(String boardTitle) {
 
         Random rand = new Random();
         int randomIndex = rand.nextInt(boardTitles.size());
@@ -89,4 +104,7 @@ public class DeckPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath("//h3[contains(.,'" + listName + "')]")).isDisplayed();
 
     }
+
+
+
 }

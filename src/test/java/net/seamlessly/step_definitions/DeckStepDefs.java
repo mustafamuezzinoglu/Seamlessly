@@ -9,7 +9,7 @@ import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.Keys;
 
 public class DeckStepDefs {
 
@@ -31,12 +31,18 @@ public class DeckStepDefs {
 
     }
 
-    @And("user enters a name as the board name")
-    public void userEntersANameAsTheBoardName() {
-        String boardName = faker.name().title();
-        deck.boardNamePlaceholder.sendKeys(boardName);
-        Driver.getDriver().manage().addCookie(new Cookie("boardName", boardName));
+    @And("user enters a <Board Title>")
+    public void userEntersABoardTitle() {
+
     }
+
+    @And("user enters a {string}")
+    public void userEntersA(String boardTitle) {
+        deck.boardNamePlaceholder.sendKeys(boardTitle);
+        Driver.getDriver().manage().addCookie(new Cookie("boardTitle", boardTitle));
+
+    }
+
 
     @And("user clicks on the Right Arrow button or push Enter")
     public void userClicksOnTheRightArrowButtonOrPushEnter() {
@@ -47,39 +53,47 @@ public class DeckStepDefs {
 
     @Then("user should see a new board with the given name under All Boards Menu")
     public void userShouldSeeANewBoardWithTheGivenNameUnderAllBoardsMenu() {
-        String boardName = Driver.getDriver().manage().getCookieNamed("boardName").getValue();
-        System.out.println("boardName = " + boardName);
-        Assert.assertTrue(deck.isBoardVisible(boardName));
-
+        String boardTitle = Driver.getDriver().manage().getCookieNamed("boardTitle").getValue();
+        System.out.println("boardTitle = " + boardTitle);
+        Assert.assertTrue(deck.isBoardVisible(boardTitle));
 
     }
+
+
+    //Second Scenario
 
     @When("user is on board page")
     public void userIsOnBoardPage() {
         deck.openNavigateConsole();
         BrowserUtility.sleep(3);
         System.out.println("deck.getBoardNames() = " + deck.getBoardNames());
-
     }
 
     @And("user selects any board from the All boards")
     public void userSelectsAnyBoardFromTheAllBoards() {
         deck.selectBoard(boardName);
-
         BrowserUtility.sleep(3);
 
 
     }
 
-    @And("user enters a list name for the selected board")
-    public void userEntersAListNameForTheSelectedBoard() {
-        String listName = faker.name().name();
-        if (deck.noListMessage.isDisplayed()){
-            deck.listNamePlaceholder.sendKeys(listName);
-            deck.confirmListNameButton.click();
-        }else{
-            Driver.closeDriver();
-        }
+    @And("user enters a {string} for the selected Board Title")
+    public void userEntersAForTheSelectedBoardTitle(String listTitle) {
+        deck.listNamePlaceholder.sendKeys(listTitle);
+        deck.confirmListNameButton.click();
+    }
+
+    @And("user click on Add List button")
+    public void userClickOnAddListButton() {
+        BrowserUtility.waitForClickable(deck.addListButton, 5);
+        deck.addListButton.click();
+
+    }
+
+    @And("user adds a new {string} for the selected Board Title")
+    public void userAddsANewForTheSelectedBoardTitle(String listTitle) {
+        BrowserUtility.waitForVisibility(deck.listNamePlaceholder, 5);
+        deck.listNamePlaceholder.sendKeys(listTitle+ Keys.ENTER);
 
 
     }
@@ -87,8 +101,11 @@ public class DeckStepDefs {
     @Then("user should see the created list name for")
     public void userShouldSeeTheCreatedListNameFor() {
         String nameofList = deck.listName.getText();
-        System.out.println("nameofList = " + nameofList);
+        BrowserUtility.sleep(3);
         Assert.assertTrue(deck.isListNameVisible(nameofList));
+
+        System.out.println("nameofList = " + nameofList);
+        System.out.println("deck.getListNames() = " + deck.getListNames());
 
 
     }
