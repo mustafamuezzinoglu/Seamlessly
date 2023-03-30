@@ -26,8 +26,6 @@ public class NotesStepDefs {
     public void user_should_see_the_new_note_title_at_the_left_console() {
         String expectedNoteTitle = "Hello World";
         String actualNoteTitle = notesPage.actual_note_title.getAttribute("title");
-       // System.out.println("actualNoteTitleveli = " + actualNoteTitle);
-       // System.out.println("notesPage.note_area = " + notesPage.actual_note_title);
         Assert.assertEquals(expectedNoteTitle,actualNoteTitle);
 
     }
