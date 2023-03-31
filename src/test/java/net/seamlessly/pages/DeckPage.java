@@ -1,9 +1,7 @@
 package net.seamlessly.pages;
 
-import com.github.javafaker.Faker;
 import net.seamlessly.utility.Driver;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -12,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 public class DeckPage extends BasePage {
-    Faker faker = new Faker();
+
 
 
     //Web Elements
@@ -46,6 +44,23 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "(//button[contains(.,'Add list')])[1]")
     public WebElement addListButton;
 
+    @FindBy(xpath = "//span[@title='Office']")
+    public WebElement currentBoard;
+
+    @FindBy(xpath = "(//button[contains(.,'Add card')])[1]")
+    public WebElement addCardButton;
+
+    @FindBy(xpath = "(//button[contains(.,'Add card')])[3]")
+    public WebElement addCardButton2;
+
+    @FindBy(xpath = "//input[@placeholder='Card name']")
+    public WebElement cardNamePlaceholder;
+
+    @FindBy(xpath = "//div[contains(@class, 'card-upper')]")
+    public WebElement cardName;
+
+
+
 
     // Methods
 
@@ -69,7 +84,7 @@ public class DeckPage extends BasePage {
     public List<String> getBoardNames() {
         // Retrieve the list of board elements
 
-        List<String> boardNames = new ArrayList<String>();
+        List<String> boardNames = new ArrayList<>();
         for (WebElement boardTitle : boardTitles) {
             // Get the board name from the title attribute
             String boardName = boardTitle.getAttribute("title");
@@ -79,10 +94,12 @@ public class DeckPage extends BasePage {
 
     }
 
+
+
     public List<String> getListNames() {
         // Retrieve the list of board elements
 
-        List<String> listNames = new ArrayList<String>();
+        List<String> listNames = new ArrayList<>();
         for (WebElement listTitle : listTitles) {
             // Get the board name from the title attribute
             String listName = listTitle.getText();
@@ -104,6 +121,8 @@ public class DeckPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath("//h3[contains(.,'" + listName + "')]")).isDisplayed();
 
     }
+
+
 
 
 

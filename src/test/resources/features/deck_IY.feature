@@ -23,10 +23,11 @@ Feature: Deck Module Functionality
     And user clicks on the Right Arrow button or push Enter
     Then user should see a new board with the given name under All Boards Menu
     Examples:
-      | Board Title    |
-      | Happy Birthday |
-      | My Diary       |
-      | Bills          |
+      | Board Title |
+      | Office      |
+      | Personal    |
+      | School      |
+
 
   @SEAMLES10-636
   Scenario Outline: US-015-TC2-1 User can create a new list of card/task under any board
@@ -38,9 +39,8 @@ Feature: Deck Module Functionality
 
     Examples:
       | List Title |
-      | Rose       |
-      | Notebook   |
-      | Drinks     |
+      | To do      |
+
 
   @SEAMLES10-637
   Scenario Outline: US-015-TC2-2 User can add a new list of card/task under any board
@@ -53,10 +53,24 @@ Feature: Deck Module Functionality
 
     Examples:
       | List Title |
-      | Tulip      |
-      | Pencil     |
-      | Meat       |
+      | Done       |
 
-  Scenario: US-015-TC3 User can add a new card/task on any list on the current board
+  @wip
+  Scenario Outline: US-015-TC3 User can add a new card/task on any list on the current board
+
+    When user is on current board
+    And user clicks on an add card button
+    And user passes a "<new card>" name
+    Then user verifies that new card appears on the related list
+
+    Examples:
+      | new card             |
+      | Results are checked  |
+
+
+
+
+
+
 
 

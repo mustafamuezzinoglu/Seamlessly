@@ -10,11 +10,11 @@ import net.seamlessly.utility.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 public class DeckStepDefs {
 
     DeckPage deck = new DeckPage();
-    Faker faker = new Faker();
     String boardName;
 
     @When("user opens the navigation menu")
@@ -60,7 +60,7 @@ public class DeckStepDefs {
     }
 
 
-    //Second Scenario
+    //Second and Third Scenario
 
     @When("user is on board page")
     public void userIsOnBoardPage() {
@@ -92,7 +92,7 @@ public class DeckStepDefs {
     @And("user adds a new {string} for the selected Board Title")
     public void userAddsANewForTheSelectedBoardTitle(String listTitle) {
         BrowserUtility.waitForVisibility(deck.listNamePlaceholder, 5);
-        deck.listNamePlaceholder.sendKeys(listTitle+ Keys.ENTER);
+        deck.listNamePlaceholder.sendKeys(listTitle + Keys.ENTER);
 
 
     }
@@ -107,6 +107,43 @@ public class DeckStepDefs {
         System.out.println("deck.getListNames() = " + deck.getListNames());
 
 
+    }
+
+
+    //4th Scenario
+
+    @When("user is on current board")
+    public void user_is_on_current_board() {
+        deck.openNavigateConsole();
+        deck.getBoardNames();
+
+        for (WebElement boardTitle : deck.boardTitles) {
+            String boardName = boardTitle.getAttribute("title");
+            if (boardName.equalsIgnoreCase("Office")) {
+                deck.currentBoard.click();
+            }
+        }
+        String str = deck.currentBoard.getText();
+        System.out.println("str = " + str);
+        System.out.println("deck.getBoardNames() = " + deck.getBoardNames());
+
+    }
+
+    @When("user clicks on an add card button")
+    public void user_clicks_on_an_add_card_button() {
+        deck.addCardButton2.click();
+    }
+
+    @When("user passes a {string} name")
+    public void user_passes_a_name(String cardName) {
+        deck.cardNamePlaceholder.sendKeys(cardName+Keys.ENTER);
+    }
+
+    @Then("user verifies that new card appears on the related list")
+    public void user_verifies_that_new_card_appears_on_the_related_list() {
+        Assert.assertTrue(deck.cardName.isDisplayed());
+        String str = deck.cardName.getText();
+        System.out.println("str = " + str);
     }
 
 
