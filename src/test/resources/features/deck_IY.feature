@@ -69,8 +69,11 @@ Feature: Deck Module Functionality
       | Birthday celebration  |
 
 
-  Scenario: User can assign any card/task to himself/herself by using the three dots on the
-  related card
+  Scenario: User can assign any card/task to himself/herself by using the three dots on
+  the related card
+    When user is on current board
+    And user clicks on three dot image of a card
+    Then user sees car
 
 
 
