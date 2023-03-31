@@ -56,12 +56,6 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Card name']")
     public WebElement cardNamePlaceholder;
 
-    @FindBy(xpath = "//div[contains(@class, 'card-upper')]")
-    public WebElement cardName;
-
-
-
-
     // Methods
 
     public void openNavigateConsole() {
@@ -94,8 +88,6 @@ public class DeckPage extends BasePage {
 
     }
 
-
-
     public List<String> getListNames() {
         // Retrieve the list of board elements
 
@@ -120,6 +112,12 @@ public class DeckPage extends BasePage {
     public boolean isListNameVisible(String listName) {
         return Driver.getDriver().findElement(By.xpath("//h3[contains(.,'" + listName + "')]")).isDisplayed();
 
+    }
+
+    public boolean isCardNameDisplayed(String cardName) {
+        String dynamicXPath = "//h3[contains(.,'"+cardName+"')]";
+        WebElement searchResult = Driver.getDriver().findElement(By.xpath(dynamicXPath));
+        return searchResult.isDisplayed();
     }
 
 

@@ -1,6 +1,5 @@
 package net.seamlessly.step_definitions;
 
-import com.github.javafaker.Faker;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -139,12 +138,10 @@ public class DeckStepDefs {
         deck.cardNamePlaceholder.sendKeys(cardName+Keys.ENTER);
     }
 
-    @Then("user verifies that new card appears on the related list")
-    public void user_verifies_that_new_card_appears_on_the_related_list() {
-        Assert.assertTrue(deck.cardName.isDisplayed());
-        String str = deck.cardName.getText();
-        System.out.println("str = " + str);
+    @Then("user verifies that {string} appears on the related list")
+    public void userVerifiesThatAppearsOnTheRelatedList(String newCard) {
+        Assert.assertTrue(deck.isCardNameDisplayed(newCard));
+        System.out.println(newCard);
     }
-
 
 }

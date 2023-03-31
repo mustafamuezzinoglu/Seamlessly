@@ -61,13 +61,16 @@ Feature: Deck Module Functionality
     When user is on current board
     And user clicks on an add card button
     And user passes a "<new card>" name
-    Then user verifies that new card appears on the related list
+    Then user verifies that "<new card>" appears on the related list
 
     Examples:
       | new card             |
       | Results are checked  |
+      | Birthday celebration  |
 
 
+  Scenario: User can assign any card/task to himself/herself by using the three dots on the
+  related card
 
 
 
