@@ -42,7 +42,6 @@ public class DeckStepDefs {
 
     }
 
-
     @And("user clicks on the Right Arrow button or push Enter")
     public void userClicksOnTheRightArrowButtonOrPushEnter() {
         deck.confirmBoardAdd();
@@ -135,13 +134,59 @@ public class DeckStepDefs {
 
     @When("user passes a {string} name")
     public void user_passes_a_name(String cardName) {
-        deck.cardNamePlaceholder.sendKeys(cardName+Keys.ENTER);
+        deck.cardNamePlaceholder.sendKeys(cardName + Keys.ENTER);
     }
 
     @Then("user verifies that {string} appears on the related list")
     public void userVerifiesThatAppearsOnTheRelatedList(String newCard) {
         Assert.assertTrue(deck.isCardNameDisplayed(newCard));
         System.out.println(newCard);
+
     }
 
+
+    //5th Scenario
+    @And("user clicks on three dot image of a card")
+    public void userClicksOnThreeDotImageOfACard() {
+
+        deck.toggleButton.click();
+        BrowserUtility.sleep(3);
+        System.out.println("deck.getCardNames() = " + deck.getCardNames());
+    }
+
+    @And("user clicks on {string} from dropdown menu")
+    public void userClicksOnFromDropdownMenu(String actionName) {
+
+        deck.selectAction(actionName);
+
+    }
+
+    @Then("user verifies Avatar icon")
+    public void userVerifiesAvatarIcon() {
+        Assert.assertTrue(deck.isAvatarImageVisible());
+    }
+
+    @And("user selects {string} board from select a board dropdown menu")
+    public void userSelectsBoardFromSelectABoardDropdownMenu(String boardName) {
+        deck.selectABoard(boardName);
+BrowserUtility.sleep(3);
+    }
+
+    @And("selects {string} from select list dropdown menu")
+    public void selectsFromSelectListDropdownMenu(String listName) {
+        deck.selectAList(listName);
+        BrowserUtility.sleep(3);
+
+    }
+
+    @And("user clicks on Move card button")
+    public void userClicksOnMoveCardButton() {
+        deck.moveCardButton.click();
+        BrowserUtility.sleep(3);
+    }
+
+    @Then("user verifies that the {string} appears on the related {string} and {string}")
+    public void userVerifiesThatTheAppearsOnTheRelatedAnd(String arg0, String arg1, String arg2) {
+
+    }
 }

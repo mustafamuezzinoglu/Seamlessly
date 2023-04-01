@@ -1,16 +1,18 @@
 package net.seamlessly.pages;
 
+import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.Driver;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class DeckPage extends BasePage {
-
 
 
     //Web Elements
@@ -32,7 +34,7 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='List name']")
     public WebElement listNamePlaceholder;
 
-       @FindBy(xpath = "//h3[contains(@class, 'stack__title')]")
+    @FindBy(xpath = "//h3[contains(@class, 'stack__title')]")
     public WebElement listName;
 
     @FindBy(xpath = "//h3[@class='stack__title has-tooltip']")
@@ -55,6 +57,24 @@ public class DeckPage extends BasePage {
 
     @FindBy(xpath = "//input[@placeholder='Card name']")
     public WebElement cardNamePlaceholder;
+
+    @FindBy(xpath = "/html/body/div[3]/main/div/div[2]/div/div[2]/div/div[2]/div/div/div[1]/div[2]/div/div[2]/div/div/div/div/button/span")
+    public WebElement toggleButton;
+
+    @FindBy(css = "div[class='avatardiv popovermenu-wrapper has-tooltip'] img")
+    public WebElement avatarImage;
+
+    @FindBy(xpath = "/html/body/div[3]/main/div/div[2]/div/div/div/div[2]/div/div/div[1]/div[1]")
+    public List<WebElement> cardNames;
+
+    @FindBy(xpath = "//input[@placeholder='Select a board']")
+    public WebElement selectBoardDropdown;
+
+    @FindBy(xpath = "//input[@placeholder='Select a list']")
+    public WebElement selectListDropdown;
+
+    @FindBy(xpath = "//button[contains(.,'Move card')]")
+    public WebElement moveCardButton;
 
     // Methods
 
@@ -115,13 +135,55 @@ public class DeckPage extends BasePage {
     }
 
     public boolean isCardNameDisplayed(String cardName) {
-        String dynamicXPath = "//h3[contains(.,'"+cardName+"')]";
+        String dynamicXPath = "//h3[contains(.,'" + cardName + "')]";
         WebElement searchResult = Driver.getDriver().findElement(By.xpath(dynamicXPath));
         return searchResult.isDisplayed();
     }
 
+    public void selectAction(String actionName) {
+        WebElement action = Driver.getDriver().findElement(By.xpath("//span[@class='action-button__text'][contains(.,'" + actionName + "')]"));
+        BrowserUtility.sleep(3);
+        action.click();
+
+    }
+
+    public boolean isAvatarImageVisible() {
+        return avatarImage.isDisplayed();
+    }
+
+    public List<String> getCardNames() {
+
+        List<String> elementNames = new ArrayList<>();
+        List<WebElement> elements = Driver.getDriver().findElements(By.xpath("/html[1]/body[1]/div[3]/main[1]/div[1]/div[2]/div[1]/div/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/h3[1]/span[1]"));
+
+        for (WebElement element : elements) {
+            elementNames.add(element.getAttribute("value"));
+        }
+        return elementNames;
+
+    }
+
+    public void selectABoard(String board) {
+
+        selectBoardDropdown.click();
+
+        WebElement selectedBoard = Driver.getDriver().findElement(By.xpath("//span[@class='name-parts__first'][contains(" +
+                ".,'" + board + "')]"));
+
+        selectedBoard.click();
 
 
+    }
+
+    public void selectAList(String list) {
+
+        selectListDropdown.click();
+        WebElement selectedList = Driver.getDriver().findElement(By.xpath("//span[@class='name-parts__first" +
+                "'][contains(" +
+                ".,'" + list + "')]"));
+
+        selectedList.click();
 
 
+    }
 }

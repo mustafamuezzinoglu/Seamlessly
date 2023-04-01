@@ -55,7 +55,7 @@ Feature: Deck Module Functionality
       | List Title |
       | Done       |
 
-  @wip
+
   Scenario Outline: US-015-TC3 User can add a new card/task on any list on the current board
 
     When user is on current board
@@ -66,14 +66,29 @@ Feature: Deck Module Functionality
     Examples:
       | new card             |
       | Results are checked  |
-      | Birthday celebration  |
+      | Birthday celebration |
 
 
   Scenario: User can assign any card/task to himself/herself by using the three dots on
   the related card
     When user is on current board
     And user clicks on three dot image of a card
-    Then user sees car
+    And user clicks on "Assign to me" from dropdown menu
+    Then user verifies Avatar icon
+
+
+  @wip
+  Scenario: User can move any card on the current board to any other list of other board
+    When user is on current board
+    And user clicks on three dot image of a card
+    And user clicks on "Move card" from dropdown menu
+    And user selects "Personal" board from select a board dropdown menu
+    And selects "To do" from select list dropdown menu
+    And user clicks on Move card button
+    Then user verifies that the "card>" appears on the related "list" and "board"
+
+
+
 
 
 
