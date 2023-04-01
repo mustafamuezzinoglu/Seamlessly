@@ -41,5 +41,16 @@ Feature: tasks module feature
     When user clicks Completed menu on the left
     Then user sees completed task name with line-through type "task-item task-item--closed"
 
+  Scenario: User can add any task to the list of important tasks by clicking on the star icon on the right side of task line
+    When user clicks Test for Task list
+    And user writes the task name "new task AC-5" and presses ENTER key
+    And user clicks star icon for fifth AC
+    Then user sees star icon as red color "rgb(179, 49, 45)"
+    And user sees important task count near the Important
+    When user clicks Important menu
+    Then user sees important task "new task AC-5"
+
+
+
 
 

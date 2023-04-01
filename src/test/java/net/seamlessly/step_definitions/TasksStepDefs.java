@@ -88,4 +88,32 @@ public class TasksStepDefs {
     public void userSeesCompletedTaskNameWithLineThroughType(String closedSentence) {
         assertEquals(closedSentence, tasksPage.completedTaskClosed.getAttribute("class"));
     }
+
+    @And("user clicks star icon for fifth AC")
+    public void userClicksStarIconForFifthAC() {
+        tasksPage.ac5StarIcon.click();
+    }
+
+    @Then("user sees star icon as red color {string}")
+    public void userSeesStarIconAsRedColor(String red) {
+        assertEquals(red, tasksPage.redStarColor.getCssValue("fill"));
+    }
+
+    @And("user sees important task count near the Important")
+    public void userSeesImportantTaskCountNearTheImportant() {
+        assertTrue(tasksPage.importantCount.isDisplayed());
+    }
+
+    @When("user clicks Important menu")
+    public void userClicksImportantMenu() {
+        tasksPage.important.click();
+    }
+
+    @Then("user sees important task {string}")
+    public void userSeesImportantTask(String taskName) {
+        assertEquals(taskName, tasksPage.newTaskInImportant.getText());
+    }
+
+
+
 }
