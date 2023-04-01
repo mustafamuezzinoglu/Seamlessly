@@ -91,11 +91,16 @@ public class TasksStepDefs {
 
     @And("user clicks star icon for fifth AC")
     public void userClicksStarIconForFifthAC() {
+        BrowserUtility.sleep(3);
+        BrowserUtility.scrollToElement(tasksPage.ac5StarIcon);
+        BrowserUtility.sleep(3);
         tasksPage.ac5StarIcon.click();
+
     }
 
     @Then("user sees star icon as red color {string}")
     public void userSeesStarIconAsRedColor(String red) {
+
         assertEquals(red, tasksPage.redStarColor.getCssValue("fill"));
     }
 
