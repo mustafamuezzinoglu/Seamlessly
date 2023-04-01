@@ -50,7 +50,7 @@ Feature: tasks module feature
     When user clicks Important menu
     Then user sees important task "new task AC-5"
 
-    Scenario: User can see the number of all uncompleted tasks next to the Current tab
+
 
 
 
