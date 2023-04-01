@@ -99,7 +99,7 @@ public class DeckStepDefs {
     public void userShouldSeeTheCreatedListNameFor() {
         String nameofList = deck.listName.getText();
         BrowserUtility.sleep(3);
-        Assert.assertTrue(deck.isListNameVisible(nameofList));
+        Assert.assertTrue(deck.isListNameDisplayed(nameofList));
 
         System.out.println("nameofList = " + nameofList);
         System.out.println("deck.getListNames() = " + deck.getListNames());
@@ -186,7 +186,14 @@ BrowserUtility.sleep(3);
     }
 
     @Then("user verifies that the {string} appears on the related {string} and {string}")
-    public void userVerifiesThatTheAppearsOnTheRelatedAnd(String arg0, String arg1, String arg2) {
+    public void userVerifiesThatTheAppearsOnTheRelatedAnd(String card, String list, String board) {
+
+        deck.selectAABoard(board);
+ Assert.assertTrue(deck.isCardNameDisplayed(card));
+Assert.assertTrue(deck.isListNameDisplayed(list));
+//        Assert.assertTrue(deck.isBoardNameDisplayed(board));
+
+        System.out.println(card + "is moved to "+ list + "under " + board);
 
     }
 }

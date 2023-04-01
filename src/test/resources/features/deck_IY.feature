@@ -85,7 +85,7 @@ Feature: Deck Module Functionality
     And user selects "Personal" board from select a board dropdown menu
     And selects "To do" from select list dropdown menu
     And user clicks on Move card button
-    Then user verifies that the "card>" appears on the related "list" and "board"
+    Then user verifies that the "My First List" appears on the related "To do" and "Personal"
 
 
 

@@ -94,6 +94,10 @@ public class DeckPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath("//span[@title='" + boardName + "']")).isDisplayed();
 
     }
+    public boolean isBoardNameDisplayed(String boardName) {
+        return Driver.getDriver().findElement(By.xpath("//h2[contains(.,'"+boardName+"')]")).isDisplayed();
+
+    }
 
     public List<String> getBoardNames() {
         // Retrieve the list of board elements
@@ -129,7 +133,7 @@ public class DeckPage extends BasePage {
 
     }
 
-    public boolean isListNameVisible(String listName) {
+    public boolean isListNameDisplayed(String listName) {
         return Driver.getDriver().findElement(By.xpath("//h3[contains(.,'" + listName + "')]")).isDisplayed();
 
     }
@@ -186,4 +190,11 @@ public class DeckPage extends BasePage {
 
 
     }
+
+    public void selectAABoard(String boardName){
+        WebElement selectABoardName = Driver.getDriver().findElement(By.xpath("//span[@title='"+boardName+"']"));
+        selectABoardName.click();
+    }
+
+
 }
