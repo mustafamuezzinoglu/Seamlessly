@@ -1,10 +1,9 @@
 package net.seamlessly.pages;
 
-import net.seamlessly.utility.BrowserUtility;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class TasksPage extends BasePage{
+public class TasksPage extends BasePage {
 
     @FindBy(xpath = "//span[normalize-space(text())='Add List…']")
     public WebElement addList;
@@ -29,9 +28,40 @@ public class TasksPage extends BasePage{
         testListDelete.click();
     }
 
+    @FindBy(xpath = "//input[@placeholder='Add a task to \"Test for Task\"…']")
+    public WebElement addTaskInput;
+    @FindBy(xpath = "//span[.='new task']")
+    public WebElement newTaskName;
 
+    @FindBy(xpath = "//span[normalize-space(text())='Test for Task']")
+    public WebElement testForTask;
 
+    @FindBy(xpath = "//label[contains(@for, 'checkbox-')]")
+    public WebElement taskCheckbox;
 
+    @FindBy(xpath = "//span[.='1 Completed Task']")
+    public WebElement completedTaskSentence;
+
+    @FindBy(css = "li#collection_completed>div>div>div.app-navigation-entry__counter")
+    public WebElement completedCountOnLeft;
+    @FindBy(css = "li#collection_completed")
+    public WebElement completedMenu;
+    @FindBy(xpath = "//li[@task-id='B1E3F29C-DA07-4A4E-8AB6-45BB527CACC7.ics' and @class='task-item task-item--closed']")
+    public WebElement completedTaskClosed;
+
+    @FindBy(xpath = "//span[.='new task AC-5']/../../../div[3]/button")
+    public WebElement ac5StarIcon;
+    @FindBy(css = "#app-content-vue > div > div.task-list > div > ol > li:nth-child(1) > div.task-item__body.reactive > div.task-body__icons > button > span.material-design-icon.star-icon > svg")
+    public WebElement redStarColor;
+
+    @FindBy(xpath ="//span[normalize-space(text())='Important']/../..//div[@class='app-navigation-entry__counter']")
+    public WebElement importantCount;
+
+    @FindBy(xpath = "//span[normalize-space(text())='Important']/../..")
+    public WebElement important;
+
+    @FindBy(xpath = "//span[.='new task AC-5']")
+    public WebElement newTaskInImportant;
 
 
 }
