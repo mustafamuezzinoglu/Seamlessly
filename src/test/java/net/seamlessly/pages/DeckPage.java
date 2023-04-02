@@ -43,9 +43,9 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@class='icon-confirm has-tooltip']")
     public WebElement confirmListNameButton;
 
-    @FindBy(xpath = "(//button[contains(.,'Add list')])[1]")
+    @FindBy(xpath = "//div[@id= 'stack-add']")
     public WebElement addListButton;
-
+    //button[contains(.,'Add list')])[1]
     @FindBy(xpath = "//span[@title='Office']")
     public WebElement currentBoard;
 
@@ -90,15 +90,8 @@ public class DeckPage extends BasePage {
         confirmBoardNameButton.click();
     }
 
-    public boolean isBoardVisible(String boardName) {
-        return Driver.getDriver().findElement(By.xpath("//span[@title='" + boardName + "']")).isDisplayed();
 
-    }
-    public boolean isBoardNameDisplayed(String boardName) {
-        return Driver.getDriver().findElement(By.xpath("//h2[contains(.,'"+boardName+"')]")).isDisplayed();
-
-    }
-
+    //==========================================================
     public List<String> getBoardNames() {
         // Retrieve the list of board elements
 
@@ -124,12 +117,36 @@ public class DeckPage extends BasePage {
         return listNames;
     }
 
-    public void selectBoard(String boardTitle) {
+    public List<String> getCardNames() {
 
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(boardTitles.size());
+        List<String> elementNames = new ArrayList<>();
+        List<WebElement> elements = Driver.getDriver().findElements(By.xpath("/html[1]/body[1]/div[3]/main[1]/div[1]/div[2]/div[1]/div/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/h3[1]/span[1]"));
 
-        boardTitles.get(randomIndex).click();
+        for (WebElement element : elements) {
+            elementNames.add(element.getAttribute("value"));
+        }
+        return elementNames;
+
+    }
+
+    //==========================================================
+
+    //    public void selectBoard(String boardTitle) {
+//
+//        Random rand = new Random();
+//        int randomIndex = rand.nextInt(boardTitles.size());
+//
+//        boardTitles.get(randomIndex).click();
+//
+//    }
+
+    public boolean isBoardNameDisplayedOnAllBoard(String boardName) {
+        return Driver.getDriver().findElement(By.xpath("//span[@title='" + boardName + "']")).isDisplayed();
+
+    }
+
+    public boolean isBoardNameDisplayed2(String boardName) {
+        return Driver.getDriver().findElement(By.xpath("//h2[contains(.,'" + boardName + "')]")).isDisplayed();
 
     }
 
@@ -144,6 +161,11 @@ public class DeckPage extends BasePage {
         return searchResult.isDisplayed();
     }
 
+    public boolean isAvatarImageVisible() {
+        return avatarImage.isDisplayed();
+    }
+
+    //==========================================================
     public void selectAction(String actionName) {
         WebElement action = Driver.getDriver().findElement(By.xpath("//span[@class='action-button__text'][contains(.,'" + actionName + "')]"));
         BrowserUtility.sleep(3);
@@ -151,23 +173,7 @@ public class DeckPage extends BasePage {
 
     }
 
-    public boolean isAvatarImageVisible() {
-        return avatarImage.isDisplayed();
-    }
-
-    public List<String> getCardNames() {
-
-        List<String> elementNames = new ArrayList<>();
-        List<WebElement> elements = Driver.getDriver().findElements(By.xpath("/html[1]/body[1]/div[3]/main[1]/div[1]/div[2]/div[1]/div/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/h3[1]/span[1]"));
-
-        for (WebElement element : elements) {
-            elementNames.add(element.getAttribute("value"));
-        }
-        return elementNames;
-
-    }
-
-    public void selectABoard(String board) {
+    public void selectABoardFromDropDownMenu(String board) {
 
         selectBoardDropdown.click();
 
@@ -191,8 +197,8 @@ public class DeckPage extends BasePage {
 
     }
 
-    public void selectAABoard(String boardName){
-        WebElement selectABoardName = Driver.getDriver().findElement(By.xpath("//span[@title='"+boardName+"']"));
+    public void selectABoard(String boardName) {
+        WebElement selectABoardName = Driver.getDriver().findElement(By.xpath("//span[@title='" + boardName + "']"));
         selectABoardName.click();
     }
 

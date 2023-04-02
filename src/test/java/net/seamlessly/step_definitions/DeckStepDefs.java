@@ -30,10 +30,10 @@ public class DeckStepDefs {
 
     }
 
-    @And("user enters a <Board Title>")
-    public void userEntersABoardTitle() {
-
-    }
+//    @And("user enters a <Board Title>")
+//    public void userEntersABoardTitle() {
+//
+//    }
 
     @And("user enters a {string}")
     public void userEntersA(String boardTitle) {
@@ -52,9 +52,8 @@ public class DeckStepDefs {
     @Then("user should see a new board with the given name under All Boards Menu")
     public void userShouldSeeANewBoardWithTheGivenNameUnderAllBoardsMenu() {
         String boardTitle = Driver.getDriver().manage().getCookieNamed("boardTitle").getValue();
-        System.out.println("boardTitle = " + boardTitle);
-        Assert.assertTrue(deck.isBoardVisible(boardTitle));
-
+        Assert.assertTrue(deck.isBoardNameDisplayedOnAllBoard(boardTitle));
+        System.out.println(boardTitle + " is displayed");
     }
 
 
@@ -67,25 +66,30 @@ public class DeckStepDefs {
         System.out.println("deck.getBoardNames() = " + deck.getBoardNames());
     }
 
-    @And("user selects any board from the All boards")
-    public void userSelectsAnyBoardFromTheAllBoards() {
-        deck.selectBoard(boardName);
+    @And("user selects a {string} from the All boards")
+    public void userSelectsAFromTheAllBoards(String boardName) {
+        deck.selectABoard(boardName);
         BrowserUtility.sleep(3);
-
     }
 
-    @And("user enters a {string} for the selected Board Title")
-    public void userEntersAForTheSelectedBoardTitle(String listTitle) {
-        deck.listNamePlaceholder.sendKeys(listTitle);
-        deck.confirmListNameButton.click();
-    }
-
+    //    @And("user selects any board from the All boards")
+//    public void userSelectsAnyBoardFromTheAllBoards() {
+//        deck.selectABoard(boardName);
+//        BrowserUtility.sleep(3);
+//
+//    }
     @And("user click on Add List button")
     public void userClickOnAddListButton() {
         BrowserUtility.waitForClickable(deck.addListButton, 5);
         deck.addListButton.click();
 
     }
+
+//    @And("user enters a {string} for the selected Board Title")
+//    public void userEntersAForTheSelectedBoardTitle(String listTitle) {
+//        deck.listNamePlaceholder.sendKeys(listTitle);
+//        deck.confirmListNameButton.click();
+//    }
 
     @And("user adds a new {string} for the selected Board Title")
     public void userAddsANewForTheSelectedBoardTitle(String listTitle) {
@@ -95,16 +99,21 @@ public class DeckStepDefs {
 
     }
 
-    @Then("user should see the created list name for")
-    public void userShouldSeeTheCreatedListNameFor() {
-        String nameofList = deck.listName.getText();
-        BrowserUtility.sleep(3);
-        Assert.assertTrue(deck.isListNameDisplayed(nameofList));
+//    @Then("user should see the created list name for")
+//    public void userShouldSeeTheCreatedListNameFor() {
+//        String nameofList = deck.listName.getText();
+//        BrowserUtility.sleep(3);
+//        Assert.assertTrue(deck.isListNameDisplayed(nameofList));
+//
+//        System.out.println("nameofList = " + nameofList);
+//        System.out.println("deck.getListNames() = " + deck.getListNames());
+//
+//
+//    }
 
-        System.out.println("nameofList = " + nameofList);
-        System.out.println("deck.getListNames() = " + deck.getListNames());
-
-
+    @Then("user should see the created {string} for")
+    public void userShouldSeeTheCreatedFor(String listTitle) {
+        Assert.assertTrue(deck.isListNameDisplayed(listTitle));
     }
 
 
@@ -168,8 +177,8 @@ public class DeckStepDefs {
 
     @And("user selects {string} board from select a board dropdown menu")
     public void userSelectsBoardFromSelectABoardDropdownMenu(String boardName) {
-        deck.selectABoard(boardName);
-BrowserUtility.sleep(3);
+        deck.selectABoardFromDropDownMenu(boardName);
+        BrowserUtility.sleep(3);
     }
 
     @And("selects {string} from select list dropdown menu")
@@ -188,12 +197,15 @@ BrowserUtility.sleep(3);
     @Then("user verifies that the {string} appears on the related {string} and {string}")
     public void userVerifiesThatTheAppearsOnTheRelatedAnd(String card, String list, String board) {
 
-        deck.selectAABoard(board);
- Assert.assertTrue(deck.isCardNameDisplayed(card));
-Assert.assertTrue(deck.isListNameDisplayed(list));
+        deck.selectABoard(board);
+        Assert.assertTrue(deck.isCardNameDisplayed(card));
+        Assert.assertTrue(deck.isListNameDisplayed(list));
 //        Assert.assertTrue(deck.isBoardNameDisplayed(board));
 
-        System.out.println(card + "is moved to "+ list + "under " + board);
+        System.out.println(card + "is moved to " + list + "under " + board);
 
     }
+
+
+
 }
