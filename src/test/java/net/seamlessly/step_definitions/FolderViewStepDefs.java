@@ -1,5 +1,6 @@
 package net.seamlessly.step_definitions;
 
+import com.google.common.base.CharMatcher;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -10,10 +11,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class FolderViewStepDefs {
 FolderViewPage folderViewPage=new FolderViewPage();
@@ -48,7 +46,10 @@ FolderViewPage folderViewPage=new FolderViewPage();
 
             String[] names = namesActual.toArray(new String[0]);
             Arrays.sort(names);
+            System.out.println("names = " + Arrays.toString(names));
+
             List<String> sortedNames = Arrays.asList(names);
+            System.out.println("sortedNames = " + sortedNames);
 
             Assert.assertEquals(sortedNames,namesActual);
 
@@ -58,17 +59,18 @@ FolderViewPage folderViewPage=new FolderViewPage();
             String[] names = namesActual.toArray(new String[0]);
             Arrays.sort(names);
             List<String> sortedNames = Arrays.asList(names);
+            System.out.println("sortedNames2 = " + sortedNames);
 
             Collections.reverse(sortedNames);
             String[] descend = sortedNames.toArray(new String[0]);
+            System.out.println("descend = " + Arrays.toString(descend));
 
             List<String> descendNames = Arrays.asList(descend);
 
             Assert.assertEquals(descendNames,namesActual);
 
-
-
-        }}
+        }
+    }
 
     @Then("verify after clicking the name if it is on ascending order or descending order")
     public void verify_after_clicking_the_name_if_it_is_on_ascending_order_or_descending_order() {
@@ -88,6 +90,82 @@ FolderViewPage folderViewPage=new FolderViewPage();
         }
 
 
-    }}
+    }
+
+
+    @When("user click the Size button")
+    public void userClickTheSizeButton() {
+        BrowserUtility.sleep(2);
+        folderViewPage.headerSize.click();
+    }
+
+    @When("Verify user can see the folder in order based on their sizes")
+    public void verifyUserCanSeeTheFolderInOrderBasedOnTheirSizes() {
+
+        List<WebElement> files = Driver.getDriver().findElements(By.xpath("(//tbody[@id='fileList'])[1]//tr"));
+        List<Integer> sizeActual = new ArrayList<>();
+       /* List<Integer> x =  new ArrayList<Integer>();
+        int[] n = (int[])x.toArray(int[x.size()]);*/
+
+        for (WebElement each : files) {
+
+            sizeActual.add(Integer.valueOf(each.getAttribute("data-size")));
+
+        }
+
+        String expectedOrderByAscending="sort-indicator icon-triangle-n";
+        String expectedOrderByDescending="sort-indicator icon-triangle-s";
+        String actualOrder=folderViewPage.sizeSortIndicator.getAttribute("class");
+        System.out.println("actualOrder = " + actualOrder);
+
+
+
+        if (actualOrder.equals(expectedOrderByAscending)){
+/* List<Integer> x =  new ArrayList<Integer>();
+        int[] n = (int[])x.toArray(int[x.size()]);
+        Integer[] n = x.toArray(new Integer[0]);*/
+
+            Integer[] sizes = sizeActual.toArray(new Integer[0]);
+            Arrays.sort(sizes);
+            System.out.println("sizes = " + Arrays.toString(sizes));
+
+            List<Integer> sortedSizes = Arrays.asList(sizes);
+            System.out.println("sortedsizes = " + sortedSizes);
+
+            Assert.assertEquals(sortedSizes,sizeActual);
+
+
+        } else if (actualOrder.equals(expectedOrderByDescending)) {
+
+            Integer[] sizes = sizeActual.toArray(new Integer[0]);
+            Arrays.sort(sizes);
+            System.out.println("sizes = " + Arrays.toString(sizes));
+
+            List<Integer> sortedSizes = Arrays.asList(sizes);
+            System.out.println("sortedSizes = " + sortedSizes);
+
+            Collections.reverse(sortedSizes);
+            Integer[] descend = sortedSizes.toArray(new Integer[0]);
+            System.out.println("descend = " + Arrays.toString(descend));
+
+            List<Object> descendSizes = Arrays.asList(descend);
+
+            Assert.assertEquals(descendSizes,sizeActual);
+
+        }
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
