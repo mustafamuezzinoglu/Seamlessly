@@ -1,16 +1,15 @@
 package net.seamlessly.pages;
 
+import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class DeckPage extends BasePage {
-
 
 
     //Web Elements
@@ -32,23 +31,14 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='List name']")
     public WebElement listNamePlaceholder;
 
-       @FindBy(xpath = "//h3[contains(@class, 'stack__title')]")
-    public WebElement listName;
-
-    @FindBy(xpath = "//h3[@class='stack__title has-tooltip']")
-    public List<WebElement> listTitles;
-
-    @FindBy(xpath = "//input[@class='icon-confirm has-tooltip']")
-    public WebElement confirmListNameButton;
-
-    @FindBy(xpath = "(//button[contains(.,'Add list')])[1]")
+    @FindBy(xpath = "//div[@id= 'stack-add']")
     public WebElement addListButton;
-
+    //button[contains(.,'Add list')])[1]
     @FindBy(xpath = "//span[@title='Office']")
     public WebElement currentBoard;
 
     @FindBy(xpath = "(//button[contains(.,'Add card')])[1]")
-    public WebElement addCardButton;
+    public WebElement addCardButton1;
 
     @FindBy(xpath = "(//button[contains(.,'Add card')])[3]")
     public WebElement addCardButton2;
@@ -56,11 +46,28 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Card name']")
     public WebElement cardNamePlaceholder;
 
-    @FindBy(xpath = "//div[contains(@class, 'card-upper')]")
-    public WebElement cardName;
+    @FindBy(xpath = "(//span[@role='img'])[12]")
+    public WebElement toggleButton;
+    //button[@aria-controls='menu-rqsoe']//span[@role='img']//*[name()='svg']//*[name()='path' and contains(@d,'M16,12A2,2')]
+
+    //button[@aria-controls='menu-wpdsi']//span[@role='img']
+    //main[@id='app-content-vue']/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]
 
 
+    @FindBy(xpath = "(//span[@role='img'])[10]")
+    public WebElement toggleButton2;
 
+    @FindBy(css = "div[class='avatardiv popovermenu-wrapper has-tooltip'] img")
+    public WebElement avatarImage;
+
+    @FindBy(xpath = "//input[@placeholder='Select a board']")
+    public WebElement selectBoardDropdown;
+
+    @FindBy(xpath = "//input[@placeholder='Select a list']")
+    public WebElement selectListDropdown;
+
+    @FindBy(xpath = "//button[contains(.,'Move card')]")
+    public WebElement moveCardButton;
 
     // Methods
 
@@ -76,54 +83,109 @@ public class DeckPage extends BasePage {
         confirmBoardNameButton.click();
     }
 
-    public boolean isBoardVisible(String boardName) {
+    //==========================================================
+
+    public boolean isBoardNameDisplayedOnAllBoard(String boardName) {
         return Driver.getDriver().findElement(By.xpath("//span[@title='" + boardName + "']")).isDisplayed();
 
     }
 
-    public List<String> getBoardNames() {
-        // Retrieve the list of board elements
+    public boolean isBoardNameDisplayed2(String boardName) {
 
-        List<String> boardNames = new ArrayList<>();
-        for (WebElement boardTitle : boardTitles) {
-            // Get the board name from the title attribute
-            String boardName = boardTitle.getAttribute("title");
-            boardNames.add(boardName);
-        }
-        return boardNames;
+        return  Driver.getDriver().findElement(By.xpath("//h2[normalize-space()='" + boardName + "']")).isDisplayed();
+
+//         boolean link2 = Driver.getDriver().findElement(By.xpath("//h2[contains(.,'Personal')]")).isDisplayed();
 
     }
 
-
-
-    public List<String> getListNames() {
-        // Retrieve the list of board elements
-
-        List<String> listNames = new ArrayList<>();
-        for (WebElement listTitle : listTitles) {
-            // Get the board name from the title attribute
-            String listName = listTitle.getText();
-            listNames.add(listName);
-        }
-        return listNames;
-    }
-
-    public void selectBoard(String boardTitle) {
-
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(boardTitles.size());
-
-        boardTitles.get(randomIndex).click();
+    public boolean isListNameDisplayed(String listName) {
+        return Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+listName+"']")).isDisplayed();
 
     }
 
-    public boolean isListNameVisible(String listName) {
-        return Driver.getDriver().findElement(By.xpath("//h3[contains(.,'" + listName + "')]")).isDisplayed();
+    public boolean isListNameDisplayed2(String listName) {
+        Boolean link1 = Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+listName+"']")).isDisplayed();
+
+//        Boolean link2 =
+//                Driver.getDriver().findElement(By.xpath("(//h3[normalize-space()='\"+listName+\"'])[1]")).isDisplayed();
+
+        Boolean link3 =Driver.getDriver().findElement(By.xpath("//h3[@class='stack__title has-tooltip']")).isDisplayed();
+
+        Boolean link4 = link1 || link3;
+        return link4;
+//h3[normalize-space()='"+listName+"'])[1]
+        //h3[@class='stack__title has-tooltip']"
+    }
+
+    //h3[contains(@aria-describedby,'tooltip_b0st18wg4w')]
+    public boolean isCardNameDisplayed(String cardName) {
+        return Driver.getDriver().findElement(By.xpath("//span[normalize-space()='"+cardName+"']")).isDisplayed();
 
     }
 
+    public boolean isAvatarImageVisible() {
+        return avatarImage.isDisplayed();
+    }
+
+    //==========================================================
+
+        public void selectAction(String actionName) {
+        Actions action = new Actions(Driver.getDriver());
+        WebElement element =
+                Driver.getDriver().findElement(By.xpath("//span[@class='action-button__text'][contains(.,'" + actionName + "')]"));
+
+        BrowserUtility.sleep(3);
+        action.click(element).perform();
 
 
+
+    }
+
+    public void selectABoardFromDropDownMenu(String board) {
+
+        selectBoardDropdown.click();
+
+        WebElement selectedBoard = Driver.getDriver().findElement(By.xpath("//span[@class='name-parts__first'][contains(" +
+                ".,'" + board + "')]"));
+
+        selectedBoard.click();
+
+
+    }
+
+    public void selectAListFromDropDownMenu(String list) {
+
+        selectListDropdown.click();
+        WebElement selectedList = Driver.getDriver().findElement(By.xpath("//span[@class='name-parts__first" +
+                "'][contains(" +
+                ".,'" + list + "')]"));
+
+        selectedList.click();
+
+
+    }
+
+    public void selectABoard(String boardName) {
+        WebElement selectABoardName = Driver.getDriver().findElement(By.xpath("//span[@title='" + boardName + "']"));
+        selectABoardName.click();
+    }
+
+    public WebElement selectACardName(String card) {
+        WebElement element =
+                Driver.getDriver().findElement(By.xpath("//span[normalize-space()='" + card + "']"));
+
+        System.out.println("element.getText() = " + element.getText());
+        return element;
+    }
+
+    public String selectAListName(String list) {
+        String element =
+                Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+list+"']")).getText();
+
+        System.out.println("element = " + element);
+
+        return element;
+    }
 
 
 }
