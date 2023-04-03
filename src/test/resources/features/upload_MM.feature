@@ -15,10 +15,11 @@ Feature: seamlessly upload function
 
   Background: user is on the Files module
     Given user login with valid credentials
-    Given user navigates to "files" module
+    And user navigates to "files" module
 
   @SEAMLES10-646 #ac1
-  Scenario:  User can upload a file
+    Scenario:  User can upload a file
     When user clicks the + button
     And user clicks the uploadFile link
+    Then user should see "selenium notlarim" file
 
