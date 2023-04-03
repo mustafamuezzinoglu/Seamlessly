@@ -8,6 +8,7 @@ import net.seamlessly.pages.ProfilePage;
 import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 
 public class ProfileStepDefs extends BasePage {
     ProfilePage profilePage = new ProfilePage();
@@ -52,16 +53,19 @@ public class ProfileStepDefs extends BasePage {
 
         profilePage.profile_text_input.clear();
         profilePage.profile_text_input.sendKeys(arg0);
-        BrowserUtility.sleep(10);
-        profilePage.password_input_popup.sendKeys("Employee123");
+       /* Alert alert = Driver.getDriver().switchTo().alert();
+        alert.sendKeys("Employee123");
+        alert.accept();
+        BrowserUtility.sleep(10);*/
+
 
     }
 
     @Then("user should see changed {string}  in the profile page")
     public void userShouldSeeChangedInTheProfilePage(String arg0) {
         profilePage.profile_image_button.click();
-        profilePage.display_name.isDisplayed();
-        profilePage.profile_image_button.isDisplayed();
+
+    Assert.assertTrue(profilePage.new_profile_name.isDisplayed());
     }
 }
 
