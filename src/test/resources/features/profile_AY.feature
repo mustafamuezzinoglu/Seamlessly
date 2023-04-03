@@ -21,11 +21,14 @@ Feature:Profile Settings
     And user sees "Phone Number" in the profile page
     Then user should see change profile button in the profile page
 
-    @SEAMLES10-631
-    Scenario: User can change "Profile Name" info under Profile Settings page
-      When user opens the profile menu
-      And user changes "Profile Name" in the profile page
-      Then user should see changed "Profile Name"  in the profile page
+  @SEAMLES10-631
+  Scenario Outline: User can change "Profile Name" info under Profile Settings page
+    When user opens the profile menu
+    And user changes <arg0> in the profile page
+    Then user should see changed <arg0>  in the profile page
+    Examples:
+      | arg0           |
+      | "Profile Name" |
 
 
 
