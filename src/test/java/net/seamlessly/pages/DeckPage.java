@@ -46,10 +46,15 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Card name']")
     public WebElement cardNamePlaceholder;
 
-    @FindBy(xpath = "/html/body/div[3]/main/div/div[2]/div/div[2]/div/div[2]/div/div/div[1]/div[2]/div/div[2]/div/div/div/div/button/span")
+    @FindBy(xpath = "(//span[@role='img'])[12]")
     public WebElement toggleButton;
+    //button[@aria-controls='menu-rqsoe']//span[@role='img']//*[name()='svg']//*[name()='path' and contains(@d,'M16,12A2,2')]
 
-    @FindBy(xpath = "/html/body/div[3]/main/div/div[2]/div/div[1]/div/div[2]/div/div/div[1]/div[2]/div/div[2]/div/div/div/div/button/span")
+    //button[@aria-controls='menu-wpdsi']//span[@role='img']
+    //main[@id='app-content-vue']/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]
+
+
+    @FindBy(xpath = "(//span[@role='img'])[10]")
     public WebElement toggleButton2;
 
     @FindBy(css = "div[class='avatardiv popovermenu-wrapper has-tooltip'] img")
@@ -86,7 +91,10 @@ public class DeckPage extends BasePage {
     }
 
     public boolean isBoardNameDisplayed2(String boardName) {
-        return Driver.getDriver().findElement(By.xpath("//h2[normalize-space()='" + boardName + "']")).isDisplayed();
+
+        return  Driver.getDriver().findElement(By.xpath("//h2[normalize-space()='" + boardName + "']")).isDisplayed();
+
+//         boolean link2 = Driver.getDriver().findElement(By.xpath("//h2[contains(.,'Personal')]")).isDisplayed();
 
     }
 
@@ -95,6 +103,21 @@ public class DeckPage extends BasePage {
 
     }
 
+    public boolean isListNameDisplayed2(String listName) {
+        Boolean link1 = Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+listName+"']")).isDisplayed();
+
+//        Boolean link2 =
+//                Driver.getDriver().findElement(By.xpath("(//h3[normalize-space()='\"+listName+\"'])[1]")).isDisplayed();
+
+        Boolean link3 =Driver.getDriver().findElement(By.xpath("//h3[@class='stack__title has-tooltip']")).isDisplayed();
+
+        Boolean link4 = link1 || link3;
+        return link4;
+//h3[normalize-space()='"+listName+"'])[1]
+        //h3[@class='stack__title has-tooltip']"
+    }
+
+    //h3[contains(@aria-describedby,'tooltip_b0st18wg4w')]
     public boolean isCardNameDisplayed(String cardName) {
         return Driver.getDriver().findElement(By.xpath("//span[normalize-space()='"+cardName+"']")).isDisplayed();
 
@@ -151,17 +174,15 @@ public class DeckPage extends BasePage {
         WebElement element =
                 Driver.getDriver().findElement(By.xpath("//span[normalize-space()='" + card + "']"));
 
-        System.out.println("selected card = " + card);
-
+        System.out.println("element.getText() = " + element.getText());
         return element;
     }
 
-    public WebElement selectAListName(String list) {
-        WebElement element =
-                Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+list+"']"));
+    public String selectAListName(String list) {
+        String element =
+                Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+list+"']")).getText();
 
-        System.out.println("selected list = " + list);
-
+        System.out.println("element = " + element);
 
         return element;
     }

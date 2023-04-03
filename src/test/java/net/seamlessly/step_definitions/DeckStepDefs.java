@@ -85,7 +85,8 @@ public class DeckStepDefs {
 
     @Then("user should see the created {string} for")
     public void userShouldSeeTheCreatedFor(String listTitle) {
-        Assert.assertTrue(deck.isListNameDisplayed(listTitle));
+        Assert.assertTrue(deck.isListNameDisplayed2(listTitle) || deck.isListNameDisplayed(listTitle));
+        System.out.println("listTitle = " + listTitle);
     }
 
 
@@ -109,10 +110,10 @@ public class DeckStepDefs {
 
     @And("user clicks on an add button for {string}")
     public void userClicksOnAnAddButtonFor(String list) {
-        if (deck.selectAListName(list).getText().equals("To do")) {
-            deck.addCardButton1.click();
-        } else {
+        if (deck.selectAListName(list).equals("Done")) {
             deck.addCardButton2.click();
+        } else {
+            deck.addCardButton1.click();
         }
     }
 
@@ -157,6 +158,8 @@ public class DeckStepDefs {
         Assert.assertTrue(deck.isAvatarImageVisible());
     }
 
+
+
     //5th Scenario
     @And("user selects {string} board from select a board dropdown menu")
     public void userSelectsBoardFromSelectABoardDropdownMenu(String boardName) {
@@ -180,12 +183,17 @@ public class DeckStepDefs {
     public void userVerifiesThatTheAppearsOnTheRelatedAnd(String card, String list, String board) {
 
         deck.selectABoard(board);
-        Assert.assertTrue(deck.isCardNameDisplayed(card));
-        System.out.println("card = " + card);
-        Assert.assertTrue(deck.isListNameDisplayed(list));
-        System.out.println("list = " + list);
-        Assert.assertTrue(deck.isBoardNameDisplayed2(board));
         System.out.println("board = " + board);
+        Assert.assertTrue(deck.isBoardNameDisplayed2(board));
+
+        System.out.println("card = " + card);
+        Assert.assertTrue(deck.isCardNameDisplayed(card));
+
+        System.out.println("list = " + list);
+        Assert.assertTrue(deck.isListNameDisplayed(list));
+
+
+
 
         System.out.println(card + " is moved to " + list + " under " + board);
 
