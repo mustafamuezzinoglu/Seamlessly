@@ -16,7 +16,7 @@ Feature: Deck Module Functionality
     And   user navigates to "Deck" module
 
 
-@1
+  @IY
   Scenario Outline: US-015-TC1 Verify that user can create a new board
     When user opens the navigation menu
     And user clicks on Add board button
@@ -27,10 +27,10 @@ Feature: Deck Module Functionality
       | Board Title |
       | Office      |
       | Personal    |
-      | School      |
 
-  @2
-  Scenario Outline: US-015-TC2-2 User can add a new list of card/task under any board
+
+  @IY
+  Scenario Outline: US-015-TC2 User can add a new list of card/task under any board
 
     When user is on board page
     And user selects a "<Board Name>" from the All boards
@@ -42,66 +42,48 @@ Feature: Deck Module Functionality
       | Board Name | List Title |
       | Office     | To do      |
       | Office     | Done       |
+      | Personal   | To do      |
 
-@3
+  @IY
   Scenario Outline: US-015-TC3 User can add a new card/task on any list on the current board
 
     When user is on current board
-    And user clicks on an add card button
+    And user clicks on an add button for "<list>"
     And user passes a "<new card>" name
     Then user verifies that "<new card>" appears on the related list
 
     Examples:
-      | new card             |
-      | Results are checked  |
-      | Birthday celebration |
+      | list  | new card             |
+      | To do | Birthday celebration |
+      | Done  | Results are checked  |
 
-
-  Scenario: User can assign any card/task to himself/herself by using the three dots on
+  @IY
+  Scenario Outline: US-015-TC4 User can assign any card/task to himself/herself by
+  using the three
+  dots on
   the related card
     When user is on current board
-    And user clicks on three dot image of a card
+    And user clicks on three dot image of a "<card>"
     And user clicks on "Assign to me" from dropdown menu
     Then user verifies Avatar icon
 
+    Examples:
+      | card                |
+      | Results are checked |
 
 
-  Scenario: User can move any card on the current board to any other list of other board
+  @IY
+  Scenario Outline: US-015-TC5 User can move any card on the current board to any other
+  list of other board
     When user is on current board
-    And user clicks on three dot image of a card
+    And user clicks on three dot image of a "<card>"
     And user clicks on "Move card" from dropdown menu
     And user selects "Personal" board from select a board dropdown menu
-    And selects "To do" from select list dropdown menu
+    And user selects "To do" from select list dropdown menu
     And user clicks on Move card button
-    Then user verifies that the "My First List" appears on the related "To do" and "Personal"
-
-
-
-
-  @SEAMLES10-636
-  Scenario Outline: US-015-TC2-1 User can create a new list of card/task under any board
-
-    When user is on board page
-    And user selects a "<Board Name>" from the All boards
-    And user enters a "<List Title>" for the selected Board Title
-    Then user should see the created list name for
+    Then user verifies that the "<card>" appears on the related "To do" and "Personal"
 
     Examples:
-      | List Title |
-      | To do      |
-
-
-  @SEAMLES10-637
-  Scenario Outline: US-015-TC2-2 User can add a new list of card/task under any board
-
-    When user is on board page
-    And user selects any board from the All boards
-    And user click on Add List button
-    And user adds a new "<List Title>" for the selected Board Title
-    Then user should see the created list name for
-
-    Examples:
-      | List Title |
-      | Done       |
-
+      | card                 |
+      | Birthday celebration |
 
