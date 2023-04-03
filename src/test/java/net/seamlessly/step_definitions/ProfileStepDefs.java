@@ -49,8 +49,10 @@ public class ProfileStepDefs extends BasePage {
 
     @And("user changes {string} in the profile page")
     public void userChangesInTheProfilePage(String arg0) {
+
         profilePage.profile_text_input.clear();
-        profilePage.profile_text_input.sendKeys(arg0);
+        profilePage.profile_text_input.sendKeys("Sdet");
+        BrowserUtility.sleep(5);
         profilePage.password_input_popup.sendKeys("Employee123");
         Driver.closeDriver();
     }
