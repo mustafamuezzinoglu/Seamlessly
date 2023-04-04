@@ -21,7 +21,7 @@ Feature: Files module functionalities
     And user clicks on favorites tab button
     Then user see starred "Ali" file
 
-   @wip
+   @wipp
   Scenario: verify user add any file to favorites from its own three dots menu
     When user clicks on "Ali" file three dots button
     And user clicks on Rename button
@@ -36,7 +36,7 @@ Feature: Files module functionalities
     And user put comment as "Significant File" into comment box and send it
     Then user observe comment "Significant File" is displayed
 
-  @wipp @SEAMLES10-663
+  @wip @SEAMLES10-663
   Scenario: verify user can delete the comments made on any file from the the file details menu opened right side
     When user clicks on "Ali" file three dots button
     And user clicks on Details button

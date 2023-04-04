@@ -21,7 +21,7 @@ public class FilesStepDefs {
 	@When("user clicks on {string} file three dots button")
 	public void userClicksOnFileThreeDotsButton(String fileName) {
 
-		uploadPage.uploadButton.click();
+		uploadPage.plusButton.click();
 		Driver.getDriver().findElement(By.xpath("//span[text()='New folder']")).click();
 		Driver.getDriver().findElement(By.id("view11-input-folder")).sendKeys("Ali");
 		Driver.getDriver().findElement(By.xpath("(//input[@type='submit'])[2]")).click();

@@ -31,10 +31,6 @@ public class FilesPage extends BasePage{
 
 
 
-
-
-
-
 	public void clickMoreBtn(String fileName){
 		 Driver.getDriver().findElement(By.xpath("(//tr[@data-file='"+fileName+"']//a)[3]")).click();
 	}
