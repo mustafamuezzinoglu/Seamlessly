@@ -124,12 +124,12 @@ public void prepareTheWebPage(String string1,String string2){
     @FindBy(xpath = "(//a[@class='menu-option option-item-restore']//span)[2]")
     public WebElement RestoreFirstElementOnTheDeletedItemTable;
 
-    @FindBy(xpath = "((//span[@class='nametext extra-data'])[2]")
+    @FindBy(xpath = "(//span[@class='nametext extra-data'])[2]")
     public WebElement SelectSecondElementOnTheDeletedItemTable;
 
     @FindBy(xpath = "(//a[@class='menu-option option-item-restore']//span)[2]")
     public WebElement RestoreSecondElementOnTheDeletedItemTable;
-    @FindBy(xpath = "///div[@id='app-content-trashbin']/table[1]/tbody[1]/tr[1]/td[2]/a[1]/span[2]/a[2]/span[1]")
+    @FindBy(xpath = "//div[@id='app-content-trashbin']/table[1]/tbody[1]/tr[1]/td[2]/a[1]/span[2]/a[2]/span[1]")
     public WebElement ClickThreeDotsFirstElementDeletedItemTable;
 
     @FindBy(xpath = "//div[@id='app-content-trashbin']/table[1]/tbody[1]/tr[2]/td[2]/a[1]/span[2]/a[2]/span[1]")

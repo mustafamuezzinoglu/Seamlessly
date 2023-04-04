@@ -6,7 +6,11 @@ import io.cucumber.java.en.When;
 import net.seamlessly.pages.TasksPage;
 import net.seamlessly.utility.BrowserUtility;
 import static org.junit.Assert.*;
+
+import org.junit.Assert;
 import org.openqa.selenium.Keys;
+
+import java.util.Map;
 
 public class TasksStepDefs {
     TasksPage tasksPage = new TasksPage();
@@ -30,11 +34,11 @@ public class TasksStepDefs {
         BrowserUtility.sleep(3);
     }
 
-    @And("verify that user sees this name inside the list name list")
-    public void verifyThatUserSeesThisNameInsideTheListNameList() {
-        assertEquals(tasksPage.TestList.getText(), "Test List");
+    @And("verify that user sees this name {string} inside the list name list")
+    public void verifyThatUserSeesThisNameInsideTheListNameList(String listName) {
+        assertEquals(tasksPage.TestList.getText(), listName);
         BrowserUtility.sleep(3);
-        tasksPage.deleteTestList();
+        tasksPage.deleteTestList(listName);
     }
 
 
@@ -57,12 +61,10 @@ public class TasksStepDefs {
     @Then("verify that user sees {string} in the task list")
     public void verifyThatUserSeesInTheTaskList(String taskName) {
         assertEquals(taskName, tasksPage.newTaskName.getText());
+        tasksPage.deleteTask(taskName);
+        tasksPage.deleteTestList("Test for Task");
     }
 
-    @When("user clicks Test for Task list")
-    public void userClicksTestForTaskList() {
-        tasksPage.testForTask.click();
-    }
 
     @And("user clicks new task checkbox button")
     public void userClicksNewTaskCheckboxButton() {
@@ -79,14 +81,16 @@ public class TasksStepDefs {
         assertTrue(tasksPage.completedCountOnLeft.isDisplayed());
     }
 
-    @When("user clicks Completed menu on the left")
-    public void userClicksCompletedMenuOnTheLeft() {
-        tasksPage.completedMenu.click();
+    @When("user clicks {string} menu on the left")
+    public void userClicksMenuOnTheLeft(String topListName) {
+        tasksPage.leftTopLists(topListName).click();
     }
 
-    @Then("user sees completed task name with line-through type {string}")
-    public void userSeesCompletedTaskNameWithLineThroughType(String closedSentence) {
+    @Then("user sees completed {string} with line-through type {string}")
+    public void userSeesCompletedWithLineThroughType(String taskName, String closedSentence) {
         assertEquals(closedSentence, tasksPage.completedTaskClosed.getAttribute("class"));
+        tasksPage.deleteTask(taskName);
+        tasksPage.deleteTestList("Test for Task");
     }
 
     @And("user clicks star icon for fifth AC")
@@ -117,6 +121,29 @@ public class TasksStepDefs {
     @Then("user sees important task {string}")
     public void userSeesImportantTask(String taskName) {
         assertEquals(taskName, tasksPage.newTaskInImportant.getText());
+        tasksPage.deleteTask(taskName);
+        tasksPage.deleteTestList("Test for Task");
+    }
+
+    @And("user clicks the three dots button near the task name {string}")
+    public void userClicksTheThreeDotsButtonNearTheTaskName(String taskName) {
+        tasksPage.threeDotsElement(taskName).click();
+    }
+
+    @And("user clicks the add sub task button")
+    public void userClicksTheAddSubTaskButton() {
+        tasksPage.addSubTask.click();
+    }
+
+    @And("user writes the subtask name according to parent and presses ENTER key")
+    public void userWritesTheSubtaskNameAccordingToParentAndPressesENTERKey(Map<String, String> names) {
+        tasksPage.subTaskInput(names.get("parent")).sendKeys(names.get("sub") + Keys.ENTER);
+    }
+
+    @Then("verify that user sees all current tasks in the page and next to the Current tab")
+    public void verifyThatUserSeesAllCurrentTasksInThePageAndNextToTheCurrentTab() {
+        Assert.assertEquals(tasksPage.currentPageTasksNum.size(), Integer.parseInt(tasksPage.currentNumber.getText().trim()));
+        tasksPage.deleteTestList("Test for Task");
     }
 
 
