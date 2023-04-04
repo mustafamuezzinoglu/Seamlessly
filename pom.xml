@@ -34,7 +34,6 @@
         </plugins>
     </build>
 
-
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -86,8 +85,8 @@
             <version>1.7.32</version>
         </dependency>
 
+
+
     </dependencies>
-
-
 
 </project>

@@ -19,7 +19,6 @@ public class LoginStepDefs {
         Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
     }
 
-
     @Then("user sees dashboard")
     public void userSeesDashboard() {
         Assert.assertTrue(Driver.getDriver().getTitle().toLowerCase().contains("dashboard"));
