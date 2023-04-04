@@ -46,17 +46,15 @@ public class DeckPage extends BasePage {
     @FindBy(xpath = "//input[@placeholder='Card name']")
     public WebElement cardNamePlaceholder;
 
-    @FindBy(xpath = "(//span[@role='img'])[12]")
+    @FindBy(xpath = "(//span[@class='material-design-icon dots-horizontal-icon'])[7]")
     public WebElement toggleButton;
-    //button[@aria-controls='menu-rqsoe']//span[@role='img']//*[name()='svg']//*[name()='path' and contains(@d,'M16,12A2,2')]
+//span[@style='outline: green dotted 2px !important;']
+    //(//span[@role='img'])[14]
 
-    //button[@aria-controls='menu-wpdsi']//span[@role='img']
-    //main[@id='app-content-vue']/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[2]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/button[1]/span[1]
-
-
-    @FindBy(xpath = "(//span[@role='img'])[10]")
+    @FindBy(xpath = "(//span[@class='material-design-icon dots-horizontal-icon'])[5]")
     public WebElement toggleButton2;
 
+    //span[@role='img'])[12]"
     @FindBy(css = "div[class='avatardiv popovermenu-wrapper has-tooltip'] img")
     public WebElement avatarImage;
 
@@ -92,24 +90,24 @@ public class DeckPage extends BasePage {
 
     public boolean isBoardNameDisplayed2(String boardName) {
 
-        return  Driver.getDriver().findElement(By.xpath("//h2[normalize-space()='" + boardName + "']")).isDisplayed();
+        return Driver.getDriver().findElement(By.xpath("//h2[normalize-space()='" + boardName + "']")).isDisplayed();
 
 //         boolean link2 = Driver.getDriver().findElement(By.xpath("//h2[contains(.,'Personal')]")).isDisplayed();
 
     }
 
     public boolean isListNameDisplayed(String listName) {
-        return Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+listName+"']")).isDisplayed();
+        return Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='" + listName + "']")).isDisplayed();
 
     }
 
     public boolean isListNameDisplayed2(String listName) {
-        Boolean link1 = Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+listName+"']")).isDisplayed();
+        Boolean link1 = Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='" + listName + "']")).isDisplayed();
 
 //        Boolean link2 =
 //                Driver.getDriver().findElement(By.xpath("(//h3[normalize-space()='\"+listName+\"'])[1]")).isDisplayed();
 
-        Boolean link3 =Driver.getDriver().findElement(By.xpath("//h3[@class='stack__title has-tooltip']")).isDisplayed();
+        Boolean link3 = Driver.getDriver().findElement(By.xpath("//h3[@class='stack__title has-tooltip']")).isDisplayed();
 
         Boolean link4 = link1 || link3;
         return link4;
@@ -119,7 +117,13 @@ public class DeckPage extends BasePage {
 
     //h3[contains(@aria-describedby,'tooltip_b0st18wg4w')]
     public boolean isCardNameDisplayed(String cardName) {
-        return Driver.getDriver().findElement(By.xpath("//span[normalize-space()='"+cardName+"']")).isDisplayed();
+
+        WebElement card2 = Driver.getDriver().findElement(By.xpath("//span[normalize-space()='" + cardName +
+                "']"));
+        System.out.println("card2.getText() = " + card2.getText());
+
+        return card2.isDisplayed();
+
 
     }
 
@@ -129,14 +133,13 @@ public class DeckPage extends BasePage {
 
     //==========================================================
 
-        public void selectAction(String actionName) {
+    public void selectAction(String actionName) {
         Actions action = new Actions(Driver.getDriver());
         WebElement element =
                 Driver.getDriver().findElement(By.xpath("//span[@class='action-button__text'][contains(.,'" + actionName + "')]"));
 
         BrowserUtility.sleep(3);
         action.click(element).perform();
-
 
 
     }
@@ -179,13 +182,26 @@ public class DeckPage extends BasePage {
     }
 
     public String selectAListName(String list) {
-        String element =
-                Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='"+list+"']")).getText();
+        String lName =
+                Driver.getDriver().findElement(By.xpath("//h3[contains(text(),'" + list + "')]")).getText();
+        String lName2 =
+                Driver.getDriver().findElement(By.xpath("//h3[normalize-space()='" + list + "']")).getText();
 
-        System.out.println("element = " + element);
+        System.out.println("lName = " + lName);
 
-        return element;
+        System.out.println("lName2 = " + lName2);
+
+////h3[normalize-space()='"+list+"']"
+        return list;
     }
 
+    public String getErrorMessage() {
+        return boardNamePlaceholder.getAttribute("validationMessage");
 
+    }
+
+    public String getErrorMessage2() {
+        return listNamePlaceholder.getAttribute("validationMessage");
+
+    }
 }

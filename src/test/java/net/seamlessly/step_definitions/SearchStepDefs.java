@@ -8,6 +8,9 @@ import net.seamlessly.pages.SearchPage;
 import net.seamlessly.utility.BrowserUtility;
 import org.junit.Assert;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+
+import java.util.concurrent.TimeUnit;
 
 public class SearchStepDefs extends BasePage {
 
@@ -34,5 +37,27 @@ public class SearchStepDefs extends BasePage {
     @And("user presses the enter key")
     public void userPressesTheEnterKey() {
         searchPage.searchBox.sendKeys(Keys.ENTER);
+    }
+
+
+
+
+    @Then("user can see the related contact")
+    public void userCanSeeTheRelatedContact() {
+    Assert.assertTrue(searchPage.fullName.isDisplayed());
+
+    }
+
+    @And("user types the contacts name")
+    public void userTypesTheContactsName() {
+        searchPage.searchBox.sendKeys("quentin");
+    }
+
+    @And("user clicks the contacts name on the dropdown menu")
+    public void userClicksTheContactsNameOnTheDropdownMenu() {
+
+    searchPage.firstResultList.click();
+
+        BrowserUtility.sleep(5);
     }
 }

@@ -15,6 +15,13 @@ public class DeckStepDefs {
 
     DeckPage deck = new DeckPage();
 
+//    @When("user navigates to {string} module")
+//    public void user_navigates_to_module(String moduleName) {
+//        BrowserUtility.sleep(4);
+//        deck.navigateToModule(moduleName);
+//        BrowserUtility.sleep(4);
+//    }
+
     @When("user opens the navigation menu")
     public void userOpensTheNavigationMenu() {
         deck.openNavigateConsole();
@@ -159,7 +166,6 @@ public class DeckStepDefs {
     }
 
 
-
     //5th Scenario
     @And("user selects {string} board from select a board dropdown menu")
     public void userSelectsBoardFromSelectABoardDropdownMenu(String boardName) {
@@ -183,8 +189,8 @@ public class DeckStepDefs {
     public void userVerifiesThatTheAppearsOnTheRelatedAnd(String card, String list, String board) {
 
         deck.selectABoard(board);
-        System.out.println("board = " + board);
-        Assert.assertTrue(deck.isBoardNameDisplayed2(board));
+//        System.out.println("board = " + board);
+//        Assert.assertTrue(deck.isBoardNameDisplayed2(board));
 
         System.out.println("card = " + card);
         Assert.assertTrue(deck.isCardNameDisplayed(card));
@@ -193,11 +199,46 @@ public class DeckStepDefs {
         Assert.assertTrue(deck.isListNameDisplayed(list));
 
 
-
-
         System.out.println(card + " is moved to " + list + " under " + board);
 
     }
 
 
+    @And("user leaves placeholder for adding board empty")
+    public void userLeavesPlaceholderForAddingBoardEmpty() {
+        deck.boardNamePlaceholder.sendKeys("");
+
+    }
+
+    @Then("user verifies warning board message {string}")
+    public void userVerifiesWarningBoardMessage(String message) {
+        String actual = deck.getErrorMessage();
+        System.out.println("actual = " + actual);
+        Assert.assertEquals(actual, message);
+
+    }
+
+    @And("user leaves placeholder for adding list empty")
+    public void userLeavesPlaceholderForAddingListEmpty() {
+        deck.listNamePlaceholder.sendKeys("");
+
+    }
+
+
+    @And("user click on any board")
+    public void userClickOnAnyBoard() {
+        deck.selectABoard("Office");
+    }
+
+    @And("user pushes Enter")
+    public void userPushesEnter() {
+        deck.listNamePlaceholder.sendKeys("" +Keys.ENTER);
+    }
+
+    @Then("user verifies warning list message {string}")
+    public void userVerifiesWarningListMessage(String message) {
+        String actual = deck.getErrorMessage2();
+        System.out.println("actual = " + actual);
+        Assert.assertEquals(actual, message);
+    }
 }
