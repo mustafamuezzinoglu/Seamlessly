@@ -14,44 +14,14 @@ public class FilesPage extends BasePage{
 	@FindBy(linkText = "Favorites")
 	public WebElement favoritesTabBtn;
 
-	@FindBy(xpath = "//a[@data-action='Rename']")
-	public WebElement renameBtn;
-
-	@FindBy(xpath = "//a[@data-action='Details']")
-	public WebElement detailsBtn;
-
-	@FindBy(id = "comments")
-	public WebElement commentsTab;
-
-	@FindBy(xpath = "//div[@class='comment__editor ']/div")
-	public WebElement commentBox;
-
-	@FindBy(xpath = "//span[.='Delete comment']")
-	public WebElement deleteCommentButton;
-
-
-
-
-
-
 
 	public void clickMoreBtn(String fileName){
 		 Driver.getDriver().findElement(By.xpath("(//tr[@data-file='"+fileName+"']//a)[3]")).click();
 	}
 
-
 	public WebElement isVisible(String fileName){
-		return Driver.getDriver().findElement(By.xpath("(//span[@class='innernametext' and .='"+fileName+"'])[2]"));
+		return Driver.getDriver().findElement(By.xpath("(//span[text()='"+fileName+"'])[3]"));
 	}
-
-	public WebElement renameFolder(String fileName){
-
-		return Driver.getDriver().findElement(By.xpath("//tr[@data-file='"+fileName+"']//form"));
-
-	}
-
-
-
 
         @FindBy(xpath = "//*[@id=\"appmenu\"]/li[2]/a")
         public WebElement All_Files;
