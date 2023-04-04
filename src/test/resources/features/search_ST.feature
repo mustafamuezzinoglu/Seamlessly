@@ -25,3 +25,12 @@ Feature: Search functionality
     And user types a file name
     And user presses the enter key
     Then user can see details of the file on side page
+
+
+  @SEAMLES10-665
+    Scenario: User can search contacts by clicking on the contacts icon and typing its name
+      When user clicks the search button
+      And user types the contacts name
+      And user clicks the contacts name on the dropdown menu
+      Then user can see the related contact
+
