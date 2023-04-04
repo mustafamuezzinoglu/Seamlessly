@@ -20,6 +20,11 @@ Feature: seamlessly upload function
   @SEAMLES10-646 #ac1
     Scenario:  User can upload a file
     When user clicks the + button
-    And user clicks the uploadFile link
-    Then user should see "selenium notlarim" file
+    And user clicks the uploadFile link to upload
+    Then user should see the file
 
+  @SEAMLES10-647 #ac2
+    Scenario: User can create a new folder
+      When user clicks the + button
+      And user clicks the new folder link
+      Then user should see the folder
