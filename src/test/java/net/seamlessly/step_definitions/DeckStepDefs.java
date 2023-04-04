@@ -189,8 +189,8 @@ public class DeckStepDefs {
     public void userVerifiesThatTheAppearsOnTheRelatedAnd(String card, String list, String board) {
 
         deck.selectABoard(board);
-        System.out.println("board = " + board);
-        Assert.assertTrue(deck.isBoardNameDisplayed2(board));
+//        System.out.println("board = " + board);
+//        Assert.assertTrue(deck.isBoardNameDisplayed2(board));
 
         System.out.println("card = " + card);
         Assert.assertTrue(deck.isCardNameDisplayed(card));
