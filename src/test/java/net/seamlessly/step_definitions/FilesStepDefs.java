@@ -28,7 +28,6 @@ public class FilesStepDefs {
 
 
 	@Then("user see starred {string} file")
-	public void userSeeStarredFile(String fileName) {
-		Assert.assertTrue(filesPage.isVisible(fileName).isDisplayed());
+	public void userSeeStarredFile(String fileName) {Assert.assertTrue(filesPage.isVisible(fileName).isDisplayed());
 	}
 }
