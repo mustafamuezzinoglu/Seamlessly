@@ -11,6 +11,7 @@ public class LoginPage {
     public LoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
+
     @FindBy(id="user")
     public WebElement userName;
 
@@ -42,7 +43,6 @@ public class LoginPage {
 
     @FindBy(xpath = "//a[@class='toggle-password']")
     public WebElement passwordEye;
-
 
     @FindBy(css = "p.warning.wrongPasswordMsg")
     public WebElement wrongPassword;

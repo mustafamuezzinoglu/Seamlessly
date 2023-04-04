@@ -44,14 +44,12 @@ public class FilesPage extends BasePage{
 		return Driver.getDriver().findElement(By.xpath("(//span[@class='innernametext' and .='"+fileName+"'])[2]"));
 	}
 
+
 	public WebElement renameFolder(String fileName){
 
 		return Driver.getDriver().findElement(By.xpath("//tr[@data-file='"+fileName+"']//form"));
 
 	}
-
-
-
 
         @FindBy(xpath = "//*[@id=\"appmenu\"]/li[2]/a")
         public WebElement All_Files;
