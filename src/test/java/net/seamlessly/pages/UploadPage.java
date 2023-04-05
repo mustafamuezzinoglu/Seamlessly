@@ -27,6 +27,12 @@ public class UploadPage extends BasePage {
     @FindBy(id = "view11-input-folder")
     public WebElement newFolderNameInputBox;
 
+    @FindBy(xpath = "//a[@data-action='Move or copy']")
+    public WebElement moveOrCopyButton;
+
+    @FindBy(xpath = "//tr[@data-entryname='muezzinoglu']")
+    public WebElement targetFolder;
+
 
 //    @FindBy(xpath="//*[@id='app-navigation-vue']/ul/li[3]/div/div/div/div/button")
 //    public WebElement bttnn;
