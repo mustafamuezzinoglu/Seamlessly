@@ -22,14 +22,25 @@ Feature:Profile Settings
     And user sees "Phone Number" in the profile page
     Then user should see change profile button in the profile page
 
-  @SEAMLES10-631
-  Scenario Outline: User can change "Profile Name" info under Profile Settings page
+    @SEAMLES10-631
+    Scenario Outline: User can change "Profile Name" info under Profile Settings page
     When user opens the profile menu
     And user changes "<arg0>" in the profile page
     Then user should see changed "<arg0>"  in the profile page
     Examples:
       | arg0         |
-      | Employee170 |
+      | Employee170  |
+
+    Scenario: User can make "Phone number" info as private under Profile Settings page
+    When user navigates the profile menu to phone number
+    And user changes phone number info as private in the profile page
+    Then user should see changed info in the profile page
+
+
+    Scenario:User can see the current local time under the Local dropdown
+    When user navigates the profile menu to local time menu
+    And user clicks the local dropdown menu and selects his "location"
+    Then user should see his local time
 
 
 
