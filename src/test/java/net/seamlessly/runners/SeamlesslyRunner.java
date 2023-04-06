@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "net/seamlessly/step_definitions",
-        tags = "",
+        tags = "@FK",
         stepNotifications = true,
         dryRun = true,
         publish = false
