@@ -18,6 +18,9 @@ public class ContactsPage extends BasePage{
     @FindBy(xpath = "//input[@id='contact-title']")
     public WebElement inputLastName;
 
+    @FindBy(xpath = "//div[@class='app-content-list']/div")
+    public WebElement listOfContacts;
+
 
 
 

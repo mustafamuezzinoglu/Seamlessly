@@ -48,13 +48,11 @@ public class ContactsStepDefs {
     }
     @Then("a new contact should be created and added to the list of contacts")
     public void a_new_contact_should_be_created_and_added_to_the_list_of_contacts() {
-      /*  WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
         wait.until(ExpectedConditions.visibilityOf(contactsPage.form));
-        Assert.assertTrue(contactsPage.form.isDisplayed());
-        --> bug olursa senaryo geçmez o zaman fail verir nası yapıcaz
-        actions neydi?
-        contactste gözükmior ama group da gözüküor
-       */
+        Assert.assertTrue(contactsPage.listOfContacts.isDisplayed());
+
+
     }
 
 
