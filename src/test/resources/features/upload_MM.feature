@@ -31,13 +31,18 @@ Feature: seamlessly upload function
 
   @wipp @SEAMLES10-648 #ac3
   Scenario Outline: User can move or copy any selected item to any folder
-    When user clicks on "selenium notlarim" file three dots button
+    When user clicks the "selenium notlarim" file three dots button
     And user clicks the move or copy
-    And user choose target folder
-    And user choose the "<action>"move button
-    Then user should see "muezzinoglu" folder
+    And user choose target folder "muezzinoglu"
+    And user choose the action "<action>"
+    And user choose target2 folder "muezzinoglu"
+    Then user should see "selenium notlarim" file in target folder
+    When user clicks the "selenium notlarim" file three dots button
+    And user clicks on Rename button
+    And user rename "selenium notlarim" to "selenium notlarim1"
+    And user can logout
 
+      | Copy   |
     Examples:
       | action |
-      | move   |
-      | copy   |
+      | Move   |
