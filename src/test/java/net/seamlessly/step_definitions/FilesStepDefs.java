@@ -77,7 +77,7 @@ public class FilesStepDefs {
 	@Then("user see new name as {string}")
 	public void userSeeNewNameAs(String newName) {
 
-		Assert.assertEquals(newName,filesPage.renameFolder(newName).getText());
+		Assert.assertTrue(filesPage.isVisible(newName).isDisplayed());
 
 	}
 
@@ -119,5 +119,6 @@ public class FilesStepDefs {
 	public void userObserveCommentIsDisappeared(String comment) {
 		WebElement commentHere = Driver.getDriver().findElement(By.xpath("//div[.='" + comment + "']"));
 		Assert.assertFalse(commentHere.isDisplayed());
+
 	}
 }
