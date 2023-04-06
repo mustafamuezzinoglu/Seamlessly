@@ -1,23 +1,14 @@
+@SEAMLES10-654
 Feature: Deck Module Functionality
   As a user, I should be able to manage my works by creating a new board/list/card and modifying them under Deck Module.
-
-
-
-  Acceptance Criteria
-
-  User can create a new board
-  User can create a new list of card/task under any board
-  User can add a new card/task on any list on the current board
-  User can assign any card/task to himself/herself by using the three dots on the related card
-  User can move any card on the current board to any other list of other board
 
   Background:
     Given user login with valid credentials
     And   user navigates to "Deck" module
 
 
-  @IY
-  Scenario Outline: US-015-TC1 Verify that user can create a new board
+  @SEAMLES10-614
+  Scenario Outline: US-015-TC1(a) Verify that user can create a new board
     When user opens the navigation menu
     And user clicks on Add board button
     And user enters a "<Board Title>"
@@ -28,10 +19,18 @@ Feature: Deck Module Functionality
       | Office      |
       | Personal    |
 
+  @SEAMLES10-666
+  Scenario: US-015-TC1(b) User verifies that user cannot create a board without a title
+  empty
+    When user opens the navigation menu
+    And user clicks on Add board button
+    And user leaves placeholder for adding board empty
+    And user clicks on the Right Arrow button or push Enter
+    Then user verifies warning board message "Please fill out this field."
 
-  @IY
+
+  @SEAMLES10-636
   Scenario Outline: US-015-TC2 User can add a new list of card/task under any board
-
     When user is on board page
     And user selects a "<Board Name>" from the All boards
     And user click on Add List button
@@ -44,7 +43,8 @@ Feature: Deck Module Functionality
       | Office     | Done       |
       | Personal   | To do      |
 
-  @IY
+
+  @SEAMLES10-637
   Scenario Outline: US-015-TC3 User can add a new card/task on any list on the current board
 
     When user is on current board
@@ -57,7 +57,18 @@ Feature: Deck Module Functionality
       | To do | Birthday celebration |
       | Done  | Results are checked  |
 
-  @IY
+
+  @SEAMLES10-667
+  Scenario: User verifies that user cannot add a list without a title
+    When user opens the navigation menu
+    And user click on any board
+    And user click on Add List button
+    And user leaves placeholder for adding list empty
+    And user pushes Enter
+    Then user verifies warning list message "Please fill out this field."
+
+
+  @SEAMLES10-652
   Scenario Outline: US-015-TC4 User can assign any card/task to himself/herself by
   using the three
   dots on
@@ -72,7 +83,7 @@ Feature: Deck Module Functionality
       | Results are checked |
 
 
-  @IY
+  @SEAMLES10-653
   Scenario Outline: US-015-TC5 User can move any card on the current board to any other
   list of other board
     When user is on current board
@@ -86,4 +97,8 @@ Feature: Deck Module Functionality
     Examples:
       | card                 |
       | Birthday celebration |
+
+
+
+
 
