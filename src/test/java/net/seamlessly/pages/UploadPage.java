@@ -21,6 +21,11 @@ public class UploadPage extends BasePage {
     @FindBy(xpath = "//input[@id='file_upload_start']")
     public WebElement uploadFile;
 
+    @FindBy(xpath = "//span[text()='New folder']")
+    public WebElement newFolder;
+
+    @FindBy(id = "view11-input-folder")
+    public WebElement newFolderNameInputBox;
 
 
 //    @FindBy(xpath="//*[@id='app-navigation-vue']/ul/li[3]/div/div/div/div/button")
