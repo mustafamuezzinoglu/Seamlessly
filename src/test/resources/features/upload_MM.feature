@@ -18,13 +18,30 @@ Feature: seamlessly upload function
     And user navigates to "files" module
 
   @wipp @SEAMLES10-646 #ac1
-    Scenario:  User can upload a file
+  Scenario:  User can upload a file
     When user clicks the + button
     And user clicks the uploadFile link to upload
     Then user should see "selenium notlarim" file
 
   @wipp @SEAMLES10-647 #ac2
-    Scenario: User can create a new folder
-      When user clicks the + button
-      And user clicks the new folder link
-      Then user should see "muezzinoglu" folder
+  Scenario: User can create a new folder
+    When user clicks the + button
+    And user clicks the new folder link
+    Then user should see "muezzinoglu" folder
+
+  @wipp @SEAMLES10-648 #ac3
+  Scenario Outline: User can move or copy any selected item to any folder
+    When user clicks the "selenium notlarim" file three dots button
+    And user clicks the move or copy
+    And user choose target folder "muezzinoglu"
+    And user choose the action "<action>"
+    And user choose target2 folder "muezzinoglu"
+    Then user should see "selenium notlarim" file in target folder
+    When user clicks the "selenium notlarim" file three dots button
+    And user clicks on Rename button
+    And user rename "selenium notlarim" to "selenium notlarim1"
+
+    Examples:
+      | action |
+      | Copy   |
+      | Move   |

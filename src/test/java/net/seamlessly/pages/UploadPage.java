@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class UploadPage extends BasePage {
 
-    public WebElement uploadedFile(String fileName){
+    public WebElement  uploadedFileOrFolder(String fileName){
         return Driver.getDriver().findElement(By.xpath("//span[text()='"+fileName+"']"));
     }
 
@@ -27,7 +27,30 @@ public class UploadPage extends BasePage {
     @FindBy(id = "view11-input-folder")
     public WebElement newFolderNameInputBox;
 
+    @FindBy(xpath = "//a[@data-action='MoveCopy']")
+    public WebElement moveOrCopyButton;
+
+    public WebElement targetFolder(String createdFolder) {
+        return Driver.getDriver().findElement(By.xpath("//tr[@data-entryname='"+createdFolder+"']"));
+    }
+
+    public WebElement targetFolder2(String createdFolder) {
+        return Driver.getDriver().findElement(By.xpath("//tr[@data-file='"+createdFolder+"']"));
+    }
+
+    public void  copyOrMoveAction (String action){
+        Driver.getDriver().findElement(By.xpath("//button[.='"+action+" to muezzinoglu']")).click();
+    }
+
+    public void clickThreeDotsButton(String fileName){
+        Driver.getDriver().findElement(By.xpath("(//tr[@data-file='"+fileName+".txt"+"']//a)[3]")).click();
+    }
+
+    public void logoutMethod(){
+        userAvatar.click();
+        logout.click();
+    }
 
 //    @FindBy(xpath="//*[@id='app-navigation-vue']/ul/li[3]/div/div/div/div/button")
-//    public WebElement bttnn;
+//    public WebElement chooseFolder;
 }
