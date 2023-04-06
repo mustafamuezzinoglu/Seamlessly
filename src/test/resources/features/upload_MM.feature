@@ -40,9 +40,8 @@ Feature: seamlessly upload function
     When user clicks the "selenium notlarim" file three dots button
     And user clicks on Rename button
     And user rename "selenium notlarim" to "selenium notlarim1"
-    And user can logout
 
-      | Copy   |
     Examples:
       | action |
+      | Copy   |
       | Move   |
