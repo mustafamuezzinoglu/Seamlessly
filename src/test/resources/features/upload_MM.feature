@@ -27,17 +27,18 @@ Feature: seamlessly upload function
   Scenario: User can create a new folder
     When user clicks the + button
     And user clicks the new folder link
+    And user create "muezzinoglu" folder
     Then user should see "muezzinoglu" folder
 
   @wipp @SEAMLES10-648 #ac3
   Scenario Outline: User can move or copy any selected item to any folder
-    When user clicks the "selenium notlarim" file three dots button
+    When user clicks the "selenium notlarim" item with ".txt" three dots button
     And user clicks the move or copy
     And user choose target folder "muezzinoglu"
     And user choose the action "<action>"
     And user choose target2 folder "muezzinoglu"
     Then user should see "selenium notlarim" file in target folder
-    When user clicks the "selenium notlarim" file three dots button
+    When user clicks the "selenium notlarim" item with ".txt" three dots button
     And user clicks on Rename button
     And user rename "selenium notlarim" to "selenium notlarim1"
 
@@ -45,3 +46,9 @@ Feature: seamlessly upload function
       | action |
       | Copy   |
       | Move   |
+
+  @wipp @SEAMLES10-649 #ac4
+  Scenario: User can delete any selected item from its three dots menu
+    When user clicks the "muezzinoglu" item with "" three dots button
+    And user clicks the delete item link
+    Then "muezzinoglu" item deleted

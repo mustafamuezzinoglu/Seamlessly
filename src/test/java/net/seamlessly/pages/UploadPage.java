@@ -30,6 +30,10 @@ public class UploadPage extends BasePage {
     @FindBy(xpath = "//a[@data-action='MoveCopy']")
     public WebElement moveOrCopyButton;
 
+    @FindBy(xpath = "//a[@data-action='Delete']")
+    public WebElement deleteAnyItem;
+
+
     public WebElement targetFolder(String createdFolder) {
         return Driver.getDriver().findElement(By.xpath("//tr[@data-entryname='"+createdFolder+"']"));
     }
@@ -42,8 +46,8 @@ public class UploadPage extends BasePage {
         Driver.getDriver().findElement(By.xpath("//button[.='"+action+" to muezzinoglu']")).click();
     }
 
-    public void clickThreeDotsButton(String fileName){
-        Driver.getDriver().findElement(By.xpath("(//tr[@data-file='"+fileName+".txt"+"']//a)[3]")).click();
+    public void clickThreeDotsButton(String fileName, String extension){
+        Driver.getDriver().findElement(By.xpath("(//tr[@data-file='"+fileName+extension+"']//a)[3]")).click();
     }
 
     public void logoutMethod(){

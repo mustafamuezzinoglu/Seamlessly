@@ -8,10 +8,12 @@ import net.seamlessly.utility.Driver;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 public class UploadStepDefs {
 
@@ -27,7 +29,7 @@ public class UploadStepDefs {
     public void user_clicks_the_upload_file_link() throws AWTException {
         String str = System.getProperty("user.dir");
         System.out.println("str = " + str);
-        String filePath = str + "\\src\\test\\java\\net\\seamlessly\\files\\selenium notlarim"+"." + extension;
+        String filePath = str + "\\src\\test\\java\\net\\seamlessly\\files\\selenium notlarim" + "." + extension;
         uploadPage.uploadFile.sendKeys(filePath);
         BrowserUtility.sleep(3);
         uploadPage.plusButton.click();
@@ -55,10 +57,15 @@ public class UploadStepDefs {
         Assert.assertTrue(uploadPage.uploadedFileOrFolder(file).isDisplayed());
     }
 
-     @When("user clicks the new folder link")
+    @When("user clicks the new folder link")
     public void user_clicks_the_new_folder_link() {
         uploadPage.newFolder.click();
-        uploadPage.newFolderNameInputBox.sendKeys("muezzinoglu" + Keys.ENTER);
+        BrowserUtility.sleep(3);
+    }
+
+    @When("user create {string} folder")
+    public void user_create_folder(String newFolder) {
+        uploadPage.newFolderNameInputBox.sendKeys(newFolder + Keys.ENTER);
         BrowserUtility.sleep(3);
     }
 
@@ -67,21 +74,21 @@ public class UploadStepDefs {
         Assert.assertTrue(uploadPage.uploadedFileOrFolder(folderName).isDisplayed());
     }
 
-    @When("user clicks the {string} file three dots button")
-    public void userClicksOnFileThreeDotsButton(String fileName){
-       uploadPage.clickThreeDotsButton(fileName);
+    @When("user clicks the {string} item with {string} three dots button")
+    public void user_clicks_the_item_with_extension_three_dots_button(String fileName,String extension) {
+        uploadPage.clickThreeDotsButton(fileName,extension);
         BrowserUtility.sleep(2);
     }
 
     @When("user clicks the move or copy")
     public void user_clicks_the_move_or_copy() {
-    uploadPage.moveOrCopyButton.click();
-    BrowserUtility.sleep(2);
+        uploadPage.moveOrCopyButton.click();
+        BrowserUtility.sleep(2);
     }
 
     @When("user choose target folder {string}")
     public void user_choose_target_folder(String createdFolder) {
-    uploadPage.targetFolder(createdFolder).click();
+        uploadPage.targetFolder(createdFolder).click();
         BrowserUtility.sleep(2);
     }
 
@@ -93,9 +100,8 @@ public class UploadStepDefs {
 
     @When("user choose the action {string}")
     public void user_choose_the_button(String action) {
-      uploadPage.copyOrMoveAction(action);
+        uploadPage.copyOrMoveAction(action);
         BrowserUtility.sleep(2);
-//        if(uploadPage.uploadedFileOrFolder("selenium notlarim").isDisplayed())
     }
 
     @When("user can logout")
@@ -106,6 +112,20 @@ public class UploadStepDefs {
     @Then("user should see {string} file in target folder")
     public void user_should_see_file_in_target_folder(String movedOrCopied) {
         Assert.assertTrue(uploadPage.uploadedFileOrFolder(movedOrCopied).isDisplayed());
+    }
+
+    @When("user clicks the delete item link")
+    public void user_clicks_the_delete_item_link() {
+        uploadPage.deleteAnyItem.click();
+        BrowserUtility.sleep(2);
+    }
+
+    @Then("{string} item deleted")
+    public void item_deleted(String selectedItem) {
+        List<WebElement> items = Driver.getDriver().findElements(By.xpath("//span[@class='innernametext']"));
+        for (WebElement item : items) {
+         Assert.assertTrue(item.getText()!=selectedItem);
+        }
     }
 
 }
