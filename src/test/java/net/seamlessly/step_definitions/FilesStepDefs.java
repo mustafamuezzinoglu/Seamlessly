@@ -4,7 +4,6 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.FilesPage;
-import net.seamlessly.pages.UploadPage;
 import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.Driver;
 import org.junit.Assert;
@@ -12,28 +11,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
-
 public class FilesStepDefs {
 	FilesPage filesPage=new FilesPage();
-	UploadPage uploadPage=new UploadPage();
 
 
 	@When("user clicks on {string} file three dots button")
 	public void userClicksOnFileThreeDotsButton(String fileName) {
 
-		uploadPage.plusButton.click();
-		Driver.getDriver().findElement(By.xpath("//span[text()='New folder']")).click();
-		Driver.getDriver().findElement(By.id("view11-input-folder")).sendKeys("Ali");
-		Driver.getDriver().findElement(By.xpath("(//input[@type='submit'])[2]")).click();
-
-
-
 		filesPage.clickMoreBtn(fileName);
 	}
 
-
-	@And("user clicks on add to favorites button")
-	public void userClicksOnAddToFavoritesButton() {
+	@And("user clicks on remove from favorites button")
+	public void userClicksOnRemoveFromFavoritesButton() {
 		filesPage.addToFavoritesBtn.click();
 	}
 
@@ -46,6 +35,7 @@ public class FilesStepDefs {
 	@Then("user see starred {string} file")
 	public void userSeeStarredFile(String fileName) {
 		Assert.assertTrue(filesPage.isVisible(fileName).isDisplayed());
+
 
 		//WebElement element = Driver.getDriver().findElement(By.xpath("(//tr[@data-file='" + fileName + "']/td/a/span/a)[2]"));
 		//element.click();
@@ -76,9 +66,7 @@ public class FilesStepDefs {
 
 	@Then("user see new name as {string}")
 	public void userSeeNewNameAs(String newName) {
-
-		Assert.assertEquals(newName,filesPage.renameFolder(newName).getText());
-
+		Assert.assertTrue(filesPage.isVisible(newName).isDisplayed());
 	}
 
 	@And("user clicks on Details button")
@@ -91,7 +79,6 @@ public class FilesStepDefs {
 		filesPage.commentsTab.click();
 	}
 
-
 	@And("user put comment as {string} into comment box and send it")
 	public void userPutCommentAsIntoCommentBoxAndSendIt(String comment) {
 		filesPage.commentBox.sendKeys(comment+Keys.ENTER);
@@ -100,9 +87,7 @@ public class FilesStepDefs {
 	@Then("user observe comment {string} is displayed")
 	public void userObserveCommentIsDisplayed(String comment) {
 		String actualComment = Driver.getDriver().findElement(By.xpath("//div[.='" + comment + "']")).getText();
-
 		Assert.assertEquals(comment,actualComment);
-
 	}
 
 	@And("user clicks on {string} comment three dots menu")

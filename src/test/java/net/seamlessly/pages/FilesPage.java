@@ -37,13 +37,13 @@ public class FilesPage extends BasePage{
 
 
 	public WebElement isVisible(String fileName){
-		return Driver.getDriver().findElement(By.xpath("(//span[@class='innernametext' and .='"+fileName+"'])[2]"));
+		return Driver.getDriver().findElement(By.xpath("//span[@class='innernametext' and .='"+fileName+"']"));
 	}
 
 
 	public WebElement renameFolder(String fileName){
 
-		return Driver.getDriver().findElement(By.xpath("//tr[@data-file='"+fileName+"']//form"));
+		return Driver.getDriver().findElement(By.xpath("//input[@class='filename']"));
 
 	}
 
