@@ -20,7 +20,7 @@ Feature: seamlessly upload function
   @wipp @SEAMLES10-646 #ac1
   Scenario:  User can upload a file
     When user clicks the + button
-    And user clicks the uploadFile link to upload
+    And user clicks the uploadFile link to upload "selenium notlarim" with "txt"
     Then user should see "selenium notlarim" file
 
   @wipp @SEAMLES10-647 #ac2

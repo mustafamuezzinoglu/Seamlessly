@@ -18,18 +18,19 @@ import java.util.List;
 public class UploadStepDefs {
 
     UploadPage uploadPage = new UploadPage();
-    String extension = "txt";
+    String extension ;
 
     @When("user clicks the + button")
     public void user_clicks_the_button() {
         uploadPage.plusButton.click();
     }
 
-    @When("user clicks the uploadFile link to upload")
-    public void user_clicks_the_upload_file_link() throws AWTException {
+    @When("user clicks the uploadFile link to upload {string} with {string}")
+    public void user_clicks_the_upload_file_link_to_upload(String fileName, String extension)
+    // throws AWTException  // if you want to use robot class
+    {
         String str = System.getProperty("user.dir");
-        System.out.println("str = " + str);
-        String filePath = str + "\\src\\test\\java\\net\\seamlessly\\files\\selenium notlarim" + "." + extension;
+        String filePath = str + "\\src\\test\\resources\\files\\"+fileName+ "." + extension;
         uploadPage.uploadFile.sendKeys(filePath);
         BrowserUtility.sleep(3);
         uploadPage.plusButton.click();
@@ -54,7 +55,9 @@ public class UploadStepDefs {
 
     @Then("user should see {string} file")
     public void user_should_see_file(String file) {
-        Assert.assertTrue(uploadPage.uploadedFileOrFolder(file).isDisplayed());
+        String expectedFile= file;
+        String actualFile = uploadPage.uploadedFileOrFolder(file).getText();
+        Assert.assertEquals("file not uploaded", expectedFile, actualFile);
     }
 
     @When("user clicks the new folder link")
@@ -71,11 +74,13 @@ public class UploadStepDefs {
 
     @Then("user should see {string} folder")
     public void user_should_see_folder(String folderName) {
-        Assert.assertTrue(uploadPage.uploadedFileOrFolder(folderName).isDisplayed());
+        String expectedFolder=folderName;
+        String actualFolder = uploadPage.uploadedFileOrFolder(folderName).getText();
+        Assert.assertEquals("folder not uploaded", expectedFolder, actualFolder);
     }
 
     @When("user clicks the {string} item with {string} three dots button")
-    public void user_clicks_the_item_with_extension_three_dots_button(String fileName,String extension) {
+    public void user_clicks_the_item_with_extension_three_dots_button( String fileName, String extension) {
         uploadPage.clickThreeDotsButton(fileName,extension);
         BrowserUtility.sleep(2);
     }
@@ -92,26 +97,23 @@ public class UploadStepDefs {
         BrowserUtility.sleep(2);
     }
 
-    @When("user choose target2 folder {string}")
-    public void user_choose_target2_folder(String createdFolder) {
-        uploadPage.targetFolder2(createdFolder).click();
-        BrowserUtility.sleep(2);
-    }
-
     @When("user choose the action {string}")
     public void user_choose_the_button(String action) {
         uploadPage.copyOrMoveAction(action);
         BrowserUtility.sleep(2);
     }
 
-    @When("user can logout")
-    public void user_can_logout() {
-        uploadPage.logoutMethod();
+    @When("user choose target2 folder {string}")
+    public void user_choose_target2_folder(String createdFolder) {
+        uploadPage.targetFolder2(createdFolder).click();
+        BrowserUtility.sleep(2);
     }
 
     @Then("user should see {string} file in target folder")
     public void user_should_see_file_in_target_folder(String movedOrCopied) {
-        Assert.assertTrue(uploadPage.uploadedFileOrFolder(movedOrCopied).isDisplayed());
+        String expectedResult = movedOrCopied;
+        String actualResult = uploadPage.uploadedFileOrFolder(movedOrCopied).getText();
+        Assert.assertEquals(expectedResult, actualResult);
     }
 
     @When("user clicks the delete item link")
