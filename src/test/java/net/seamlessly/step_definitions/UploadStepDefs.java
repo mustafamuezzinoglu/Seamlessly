@@ -122,6 +122,7 @@ public class UploadStepDefs {
         BrowserUtility.sleep(2);
     }
 
+
     @Then("{string} item deleted")
     public void item_deleted(String selectedItem) {
         List<WebElement> items = Driver.getDriver().findElements(By.xpath("//span[@class='innernametext']"));
