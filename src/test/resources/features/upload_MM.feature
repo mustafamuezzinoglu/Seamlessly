@@ -54,11 +54,10 @@ Feature: seamlessly upload function
     Then "muezzinoglu" item deleted
 
   @wipp @SEAMLES10-650 #ac5
-  Scenario Outline: User can see the total number of files and folders under the files list table
-    Then user should see the all number of "<files and folders>" under the files list table and delete "selenium notlarim" file with extension ".txt" and delete "muezzinoglu" folder with extension ""
-    Examples:
-      | files and folders |
-      | files             |
-      | folders           |
-
+  Scenario: User can see the total number of files and folders under the files list table
+    When user upload "selenium notlarim" with ".txt"
+    And  user create a "muezzinoglu" folder
+    Then user should see the all number of under the files list table
+    And delete "selenium notlarim" with extension ".txt"
+    And delete "muezzinoglu" with extension ""
 

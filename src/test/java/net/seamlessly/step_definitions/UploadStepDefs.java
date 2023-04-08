@@ -62,7 +62,7 @@ public class UploadStepDefs {
 
     @When("user clicks the new folder link")
     public void user_clicks_the_new_folder_link() {
-        uploadPage.newFolder.click();
+        uploadPage.newFolderLink.click();
         BrowserUtility.sleep(3);
     }
 
@@ -130,59 +130,45 @@ public class UploadStepDefs {
         }
     }
 
-    @When("user upload {string} file with extension {string}")
-    public void user_upload_file_with_extension(String fileName, String extension) {
-        uploadPage.plusButton.click();
-        String str = System.getProperty("user.dir");
-        String filePath = str + "\\src\\test\\resources\\files\\" + fileName + extension;
-        uploadPage.uploadFile.sendKeys(filePath);
-        BrowserUtility.sleep(2);
-        uploadPage.plusButton.click();
-        BrowserUtility.sleep(2);
+    @Then("user should see the all number of under the files list table")
+    public void userShouldSeeTheAllNumberOfFilesAndFoldersUnderTheFilesListTable() {
+
+        List<WebElement> files = Driver.getDriver().findElements(By.xpath("//*[@data-type='file']"));
+        String expectedTotalFileNumber = String.valueOf(files.size());
+
+        String actualTotalFileNumber = uploadPage.fileInfo.getText();
+        actualTotalFileNumber = actualTotalFileNumber.substring(0, actualTotalFileNumber.indexOf(" "));
+        BrowserUtility.sleep(1);
+
+        Assert.assertEquals(expectedTotalFileNumber, actualTotalFileNumber);
+        BrowserUtility.sleep(1);
+
+        List<WebElement> folders = Driver.getDriver().findElements(By.xpath("//*[@data-type='dir']"));
+        String expectedTotalFolderNumber = String.valueOf(folders.size());
+
+        String actualTotalFolderNumber = uploadPage.dirInfo.getText();
+        actualTotalFolderNumber = actualTotalFolderNumber.substring(0, actualTotalFolderNumber.indexOf(" "));
+        BrowserUtility.sleep(1);
+
+        Assert.assertEquals(expectedTotalFolderNumber, actualTotalFolderNumber);
+        BrowserUtility.sleep(1);
+
     }
 
-    @And("user create a new folder named {string}")
-    public void user_create_a_new_folder_named(String newFolder) {
-        uploadPage.plusButton.click();
-        uploadPage.newFolder.click();
-        BrowserUtility.sleep(2);
-        uploadPage.newFolderNameInputBox.sendKeys(newFolder + Keys.ENTER);
-        BrowserUtility.sleep(2);
+    @When("user upload {string} with {string}")
+    public void user_a_create_folder(String newFolder, String extension) {
+        uploadPage.uploadFileWithExtension(newFolder, extension);
     }
 
-    @Then("user should see the all number of {string} under the files list table and delete {string} file with extension {string} and delete {string} folder with extension {string}")
-    public void userShouldSeeTheAllNumberOfFilesAndFoldersUnderTheFilesListTable(String filesAndFolders, String fileName, String extension1, String newFolder, String extension2) {
-
-        if (filesAndFolders.equals("files")) {
-            user_upload_file_with_extension(fileName, extension1);
-            List<WebElement> files = Driver.getDriver().findElements(By.xpath("//*[@data-type='file']"));
-            String expectedTotalFileNumber = String.valueOf(files.size());
-
-            String actualTotalFileNumber = uploadPage.fileInfo.getText();
-            actualTotalFileNumber = actualTotalFileNumber.substring(0, actualTotalFileNumber.indexOf(" "));
-            BrowserUtility.sleep(2);
-
-            Assert.assertEquals(expectedTotalFileNumber, actualTotalFileNumber);
-            BrowserUtility.sleep(2);
-            uploadPage.deleteFileWithExtension(fileName, extension1);
-
-        } else if (filesAndFolders.equals("folders")) {
-            user_create_a_new_folder_named(newFolder);
-            List<WebElement> folders = Driver.getDriver().findElements(By.xpath("//*[@data-type='dir']"));
-            String expectedTotalFolderNumber = String.valueOf(folders.size());
-
-            String actualTotalFolderNumber = uploadPage.dirInfo.getText();
-            actualTotalFolderNumber = actualTotalFolderNumber.substring(0, actualTotalFolderNumber.indexOf(" "));
-            BrowserUtility.sleep(2);
-
-            Assert.assertEquals(expectedTotalFolderNumber, actualTotalFolderNumber);
-            BrowserUtility.sleep(2);
-            uploadPage.deleteFolder(newFolder,extension2);
-        }
+    @When("user create a {string} folder")
+    public void user_a_create_folder(String newFolder) {
+        uploadPage.createANewFolder(newFolder);
     }
 
-
-
+    @When("delete {string} with extension {string}")
+    public void user_choose_the_button(String fileOrFolderName, String extension) {
+        uploadPage.deleteAnyItem(fileOrFolderName, extension);
+    }
 
 
 }
