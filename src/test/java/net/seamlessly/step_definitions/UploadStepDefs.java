@@ -19,7 +19,6 @@ import java.util.List;
 public class UploadStepDefs {
 
     UploadPage uploadPage = new UploadPage();
-    String extension;
 
     @When("user clicks the + button")
     public void user_clicks_the_button() {
@@ -123,7 +122,6 @@ public class UploadStepDefs {
         BrowserUtility.sleep(2);
     }
 
-
     @Then("{string} item deleted")
     public void item_deleted(String selectedItem) {
         List<WebElement> items = Driver.getDriver().findElements(By.xpath("//span[@class='innernametext']"));
@@ -163,6 +161,7 @@ public class UploadStepDefs {
             String actualTotalFileNumber = uploadPage.fileInfo.getText();
             actualTotalFileNumber = actualTotalFileNumber.substring(0, actualTotalFileNumber.indexOf(" "));
             BrowserUtility.sleep(2);
+
             Assert.assertEquals(expectedTotalFileNumber, actualTotalFileNumber);
             BrowserUtility.sleep(2);
             deleteFileWithExtension(fileName, extension1);
@@ -175,12 +174,11 @@ public class UploadStepDefs {
             String actualTotalFolderNumber = uploadPage.dirInfo.getText();
             actualTotalFolderNumber = actualTotalFolderNumber.substring(0, actualTotalFolderNumber.indexOf(" "));
             BrowserUtility.sleep(2);
+
             Assert.assertEquals(expectedTotalFolderNumber, actualTotalFolderNumber);
             BrowserUtility.sleep(2);
             deleteFolder(newFolder,extension2);
         }
-
-
     }
 
     public void deleteFileWithExtension(String fileName, String extension1) {
@@ -196,4 +194,5 @@ public class UploadStepDefs {
         uploadPage.deleteAnyItem.click();
         BrowserUtility.sleep(2);
     }
+
 }

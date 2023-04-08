@@ -14,10 +14,6 @@ public class UploadPage extends BasePage {
     @FindBy(xpath = "//a[@class='button new']")
     public WebElement plusButton;
 
-    @FindBy(xpath = "//span[text()='Upload file']")
-//    @FindBy(xpath = "//label[@class='menuitem']")
-    public WebElement uploadFileLink;
-
     @FindBy(xpath = "//input[@id='file_upload_start']")
     public WebElement uploadFile;
 
@@ -47,7 +43,7 @@ public class UploadPage extends BasePage {
         return Driver.getDriver().findElement(By.xpath("//tr[@data-file='"+createdFolder+"']"));
     }
 
-    public void  copyOrMoveAction (String action){
+    public void copyOrMoveAction (String action){
         Driver.getDriver().findElement(By.xpath("//button[.='"+action+" to muezzinoglu']")).click();
     }
 
