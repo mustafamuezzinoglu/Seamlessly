@@ -13,9 +13,9 @@ import org.junit.runner.RunWith;
         },
         features = "src/test/resources/features",
         glue = "net/seamlessly/step_definitions",
-        tags = " ",
+        tags = "@wipp ",
         stepNotifications = true,
-        dryRun = true,
+        dryRun = false,
         publish = false
 )
 public class SeamlesslyRunner {

@@ -20,7 +20,7 @@ Feature: seamlessly upload function
   @wipp @SEAMLES10-646 #ac1
   Scenario:  User can upload a file
     When user clicks the + button
-    And user clicks the uploadFile link to upload "selenium notlarim" with "txt"
+    And user clicks the uploadFile link to upload "selenium notlarim" with ".txt"
     Then user should see "selenium notlarim" file
 
   @wipp @SEAMLES10-647 #ac2
@@ -52,3 +52,13 @@ Feature: seamlessly upload function
     When user clicks the "muezzinoglu" item with "" three dots button
     And user clicks the delete item link
     Then "muezzinoglu" item deleted
+
+  @wipp @SEAMLES10-650 #ac5
+  Scenario Outline: User can see the total number of files and folders under the files list table
+    Then user should see the all number of "<files and folders>" under the files list table and delete "selenium notlarim" file with extension ".txt" and delete "muezzinoglu" folder with extension ""
+    Examples:
+      | files and folders |
+      | files             |
+      | folders           |
+
+

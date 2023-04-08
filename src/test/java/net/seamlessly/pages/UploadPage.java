@@ -33,6 +33,11 @@ public class UploadPage extends BasePage {
     @FindBy(xpath = "//a[@data-action='Delete']")
     public WebElement deleteAnyItem;
 
+    @FindBy(xpath = "//span[@class='fileinfo']")
+    public WebElement fileInfo;
+
+    @FindBy(xpath = "//span[@class='dirinfo']")
+    public WebElement dirInfo;
 
     public WebElement targetFolder(String createdFolder) {
         return Driver.getDriver().findElement(By.xpath("//tr[@data-entryname='"+createdFolder+"']"));
@@ -50,11 +55,6 @@ public class UploadPage extends BasePage {
         Driver.getDriver().findElement(By.xpath("(//tr[@data-file='"+fileName+extension+"']//a)[3]")).click();
     }
 
-    public void logoutMethod(){
-        userAvatar.click();
-        logout.click();
-    }
 
-//    @FindBy(xpath="//*[@id='app-navigation-vue']/ul/li[3]/div/div/div/div/button")
-//    public WebElement chooseFolder;
+
 }
