@@ -164,7 +164,7 @@ public class UploadStepDefs {
 
             Assert.assertEquals(expectedTotalFileNumber, actualTotalFileNumber);
             BrowserUtility.sleep(2);
-            deleteFileWithExtension(fileName, extension1);
+            uploadPage.deleteFileWithExtension(fileName, extension1);
 
         } else if (filesAndFolders.equals("folders")) {
             user_create_a_new_folder_named(newFolder);
@@ -177,22 +177,12 @@ public class UploadStepDefs {
 
             Assert.assertEquals(expectedTotalFolderNumber, actualTotalFolderNumber);
             BrowserUtility.sleep(2);
-            deleteFolder(newFolder,extension2);
+            uploadPage.deleteFolder(newFolder,extension2);
         }
     }
 
-    public void deleteFileWithExtension(String fileName, String extension1) {
-        uploadPage.clickThreeDotsButton(fileName, extension1);
-        BrowserUtility.sleep(2);
-        uploadPage.deleteAnyItem.click();
-        BrowserUtility.sleep(2);
-    }
 
-    public void deleteFolder(String nameOfDeletedItem,String extension2) {
-        uploadPage.clickThreeDotsButton(nameOfDeletedItem,extension2);
-        BrowserUtility.sleep(2);
-        uploadPage.deleteAnyItem.click();
-        BrowserUtility.sleep(2);
-    }
+
+
 
 }

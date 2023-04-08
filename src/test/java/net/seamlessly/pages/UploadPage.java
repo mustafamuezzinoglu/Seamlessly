@@ -1,5 +1,6 @@
 package net.seamlessly.pages;
 
+import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -51,6 +52,18 @@ public class UploadPage extends BasePage {
         Driver.getDriver().findElement(By.xpath("(//tr[@data-file='"+fileName+extension+"']//a)[3]")).click();
     }
 
+    public void deleteFileWithExtension(String fileName, String extension1) {
+        clickThreeDotsButton(fileName, extension1);
+        BrowserUtility.sleep(2);
+        deleteAnyItem.click();
+        BrowserUtility.sleep(2);
+    }
 
+    public void deleteFolder(String nameOfDeletedItem,String extension2) {
+        clickThreeDotsButton(nameOfDeletedItem,extension2);
+        BrowserUtility.sleep(2);
+        deleteAnyItem.click();
+        BrowserUtility.sleep(2);
+    }
 
 }
