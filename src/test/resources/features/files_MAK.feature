@@ -22,7 +22,7 @@ Feature: Files module functionalities
     Then user see starred "Ali" file
 
    @wipp
-  Scenario: verify user add any file to favorites from its own three dots menu
+  Scenario: verify User can rename any file from its own three dots menu
     When user clicks on "Ali" file three dots button
     And user clicks on Rename button
     And user rename "Ali" to "Ali.K"
