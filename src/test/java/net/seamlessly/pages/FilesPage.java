@@ -39,7 +39,7 @@ public class FilesPage extends BasePage{
 	public void createFolder(String fileName){
 		uploadPage.plusButton.click();
 
-		uploadPage.newFolder.click();
+		uploadPage.newFolderLink.click();
 
 		uploadPage.newFolderNameInputBox.sendKeys(fileName+ Keys.ENTER);
 	}
@@ -47,7 +47,6 @@ public class FilesPage extends BasePage{
 	public void clickMoreBtn(String fileName){
 		 Driver.getDriver().findElement(By.xpath("(//tr[@data-file='"+fileName+"']//a)[3]")).click();
 	}
-
 
 	public WebElement isVisible(String fileName){
 		return Driver.getDriver().findElement(By.xpath("//tr[@data-file='"+fileName+"']"));
@@ -69,10 +68,8 @@ public class FilesPage extends BasePage{
         @FindBy(xpath = "//*[@id=\"controls\"]/div[2]/div[2]/ul/li[3]/a/span[2]")
         public WebElement AddNewTextFile;
 
-
         @FindBy(xpath = "//*[@id=\"view11-input-file\"]")
         public WebElement NewTextFileTextBox;
-
 
         @FindBy(xpath = "//*[@id=\"controls\"]/div[2]/div[2]/ul/li[3]/a/form/input[2]")
         public WebElement CreateNewTextFile;
@@ -102,8 +99,6 @@ public class FilesPage extends BasePage{
 
         @FindBy(xpath = "//*[@id=\"fileList\"]/tr[1]")
         public WebElement FirstElementOfTheDeletedItems;
-
-
 
 
 }
