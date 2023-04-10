@@ -272,6 +272,30 @@ BrowserUtility.sleep(3);
 
 
     }
+
+    @Then("Verify total values of all files in the first line")
+    public void verifyTotalValuesOfAllFilesInTheFirstLine() {
+List<WebElement> tableDataType=Driver.getDriver().findElements(By.xpath("//tbody[@id='fileList']//tr"));
+//List<String> getTableDataTypes=new ArrayList<>();
+
+int file=0;
+int dir=0;
+        for (WebElement eachDataTypes : tableDataType) {
+           // getTableDataTypes.add(eachDataTypes.getAttribute("data-type"));
+if (eachDataTypes.getAttribute("data-type").equalsIgnoreCase("file")){
+    file++;
+} else if (eachDataTypes.getAttribute("data-type").equalsIgnoreCase("dir")) {
+    dir++;
+
+}
+        }
+        String totalValuesOfFiles=dir +" folders and " + file +" files";
+        //6 folders and 2 files
+        System.out.println("totalValuesOfFiles = " + totalValuesOfFiles);
+        //System.out.println("getTableDataTypes = " + getTableDataTypes);
+
+Assert.assertEquals(totalValuesOfFiles,folderViewPage.totalFilesAppearance.getText());
+    }
 }
 
 

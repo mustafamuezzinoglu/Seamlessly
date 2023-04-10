@@ -60,11 +60,13 @@ Feature: folder view feature
 # see the total values of all files in the first line when clicked on the “select all” checkbox at the left top corner of the list
 
 #TC1-verify all the checkboxes are selected
+  @SEAMLES10-686
   Scenario: Verify When user select all checkbox see the all checkBox are selected
 
     When user click the select all checkbox
     Then Verify all checkboxes are selected
-
+#AC5 - TC2
+  @SEAMLES10-687
     Scenario: Verify when user click all checkbox and see the total value of all files
       When user click the select all checkbox
       Then Verify total values of all files in the first line

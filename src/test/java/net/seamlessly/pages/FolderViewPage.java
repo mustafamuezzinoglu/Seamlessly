@@ -25,9 +25,6 @@ public class FolderViewPage extends BasePage{
                       //*[@id="modified"]/span[2]
     public WebElement ModifiedDateSortIndicator;
 
-    @FindBy (css = "a[href='https://tesla.com']")
-    public WebElement FileFeature;
-
     @FindBy(xpath = "(//*[@id=\"headerSize\"])[1]")
     public WebElement headerSize;
 
@@ -43,6 +40,14 @@ public class FolderViewPage extends BasePage{
 
     @FindBy(xpath = "(//*[@id=\"headerSize\"]/a/span[1])[1]")
     public WebElement totalSize;
+
+    @FindBy(xpath = "//div[@id='headerName-container']//a[@class='name sort columntitle']/span[1]")
+    public WebElement totalFilesAppearance;
+
+    @FindBy(xpath = "//tbody[@id='fileList']//tr")
+    public WebElement folderDataTypes;
+
+
 
 //(//table[@id="filestable"])[1]
 
