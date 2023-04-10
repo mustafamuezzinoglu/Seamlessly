@@ -22,7 +22,8 @@ public class ContactsPage extends BasePage{
     public WebElement listOfContacts;
 
 
-
+    @FindBy(css = "button[class$='icon-picture-force-white']")
+    public WebElement iconBtn;
 
 
     }

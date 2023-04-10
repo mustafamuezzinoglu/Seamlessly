@@ -14,9 +14,12 @@ Feature: Contacts Module
     Given user login with valid credentials
     When user navigates to "Contacts" module
 
-    @FK
+  @SEAMLES10-672
   Scenario: User creates a new contact
     When user clicks on "New Contact" button
     And user should see a form to enter contact information
     And user fills in the required fields
     Then a new contact should be created and added to the list of contacts
+
+    Scenario: User change the profile picture
+      When user clicks
