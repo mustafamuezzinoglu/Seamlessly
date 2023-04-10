@@ -30,7 +30,7 @@ Feature: Files module functionalities
 
   @SEAMLES10-662 @wip
   Scenario: verify user can put some comments on any file from the file details menu opened right side
-    When user clicks on "Ali" file three dots button
+    When user clicks on "Folder3" file three dots button
     And user clicks on Details button
     And user clicks to Comments tab
     And user put comment as "Significant File" into comment box and send it
@@ -38,7 +38,7 @@ Feature: Files module functionalities
 
   @SEAMLES10-663 @wip
   Scenario: verify user can delete the comments made on any file from the the file details menu opened right side
-    When user clicks on "Ali" file three dots button
+    When user clicks on "Folder4" file three dots button
     And user clicks on Details button
     And user clicks to Comments tab
     And user put comment as "Significant File" into comment box and send it
