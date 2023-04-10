@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         glue = "net/seamlessly/step_definitions",
         tags = "",
         stepNotifications = true,
-        dryRun = true,
+        dryRun = false,
         publish = false
 )
 public class SeamlesslyRunner {
