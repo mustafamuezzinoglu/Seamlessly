@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.FilesPage;
+import net.seamlessly.pages.UploadPage;
 import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.Driver;
 import org.junit.Assert;
@@ -13,10 +14,13 @@ import org.openqa.selenium.WebElement;
 
 public class FilesStepDefs {
 	FilesPage filesPage=new FilesPage();
+	UploadPage uploadPage=new UploadPage();
 
 
 	@When("user clicks on {string} file three dots button")
 	public void userClicksOnFileThreeDotsButton(String fileName) {
+
+		filesPage.createFolder(fileName);
 
 		filesPage.clickMoreBtn(fileName);
 	}
@@ -35,14 +39,10 @@ public class FilesStepDefs {
 
 	@Then("user see starred {string} file")
 	public void userSeeStarredFile(String fileName) {
-		Assert.assertTrue(filesPage.isVisible(fileName).isDisplayed());
 
+		WebElement starred = Driver.getDriver().findElement(By.xpath("(//tr[@data-file='" + fileName + "'])[2]"));
 
-		//WebElement element = Driver.getDriver().findElement(By.xpath("(//tr[@data-file='" + fileName + "']/td/a/span/a)[2]"));
-		//element.click();
-		//BrowserUtility.clickWithJS(element);
-
-		//Driver.getDriver().findElement(By.xpath("//a[@class='menuitem action action-delete permanent']")).click();
+		Assert.assertTrue(starred.isDisplayed());
 
 	}
 
@@ -58,9 +58,6 @@ public class FilesStepDefs {
 		BrowserUtility.scrollToElement(filesPage.renameFolder(oldName));
 
 		filesPage.renameFolder(oldName).sendKeys(newName+ Keys.ENTER);
-
-
-
 
 	}
 

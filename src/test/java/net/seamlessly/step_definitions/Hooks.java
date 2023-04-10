@@ -19,7 +19,7 @@ public class Hooks {
         Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
     }
 
-    @After()
+    //@After()
     public void afterScenario(Scenario scenario) {
         if (scenario.isFailed()) {
             try {
@@ -34,7 +34,7 @@ public class Hooks {
         Driver.closeDriver();
     }
 
-    @After()
+    //@After()
     public void closeBrowser(Scenario scenario) {
         if (!scenario.isFailed()) {
             Driver.closeDriver();
