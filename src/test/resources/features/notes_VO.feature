@@ -7,6 +7,8 @@ Feature: notes module feature
   #Acceptance Criteria:**
   #1- User can create a new note
 
+
+#smoke
   Scenario: verify that user can create a new note
     When user click the plus sign
     And user write notes to note area
