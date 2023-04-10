@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
+
     public BasePage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
@@ -44,6 +45,8 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//li[@data-id='help']/a")
     public WebElement help;
+
     @FindBy(xpath = "//li[@data-id='logout']/a")
     public WebElement logout;
+
 }
