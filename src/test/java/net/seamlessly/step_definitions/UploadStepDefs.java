@@ -4,28 +4,33 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.UploadPage;
 import net.seamlessly.utility.BrowserUtility;
+import net.seamlessly.utility.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 public class UploadStepDefs {
 
     UploadPage uploadPage = new UploadPage();
-    String extension = "txt";
+    String extension ;
 
     @When("user clicks the + button")
     public void user_clicks_the_button() {
         uploadPage.plusButton.click();
     }
 
-    @When("user clicks the uploadFile link to upload")
-    public void user_clicks_the_upload_file_link() throws AWTException {
+    @When("user clicks the uploadFile link to upload {string} with {string}")
+    public void user_clicks_the_upload_file_link_to_upload(String fileName, String extension)
+    // throws AWTException  // if you want to use robot class
+    {
         String str = System.getProperty("user.dir");
-        System.out.println("str = " + str);
-        String filePath = str + "\\src\\test\\java\\net\\seamlessly\\files\\selenium notlarim"+"." + extension;
+        String filePath = str + "\\src\\test\\resources\\files\\"+fileName+ "." + extension;
         uploadPage.uploadFile.sendKeys(filePath);
         BrowserUtility.sleep(3);
         uploadPage.plusButton.click();
@@ -50,22 +55,80 @@ public class UploadStepDefs {
 
     @Then("user should see {string} file")
     public void user_should_see_file(String file) {
-        Assert.assertTrue(uploadPage.uploadedFile(file).isDisplayed());
+        String expectedFile= file;
+        String actualFile = uploadPage.uploadedFileOrFolder(file).getText();
+        Assert.assertEquals("file not uploaded", expectedFile, actualFile);
     }
-
-    String folderName = "muezzinoglu";
 
     @When("user clicks the new folder link")
     public void user_clicks_the_new_folder_link() {
         uploadPage.newFolder.click();
-        uploadPage.newFolderNameInputBox.sendKeys(folderName+ Keys.ENTER);
+        BrowserUtility.sleep(3);
+    }
+
+    @When("user create {string} folder")
+    public void user_create_folder(String newFolder) {
+        uploadPage.newFolderNameInputBox.sendKeys(newFolder + Keys.ENTER);
         BrowserUtility.sleep(3);
     }
 
     @Then("user should see {string} folder")
     public void user_should_see_folder(String folderName) {
-        Assert.assertTrue(uploadPage.uploadedFile(folderName).isDisplayed());
+        String expectedFolder=folderName;
+        String actualFolder = uploadPage.uploadedFileOrFolder(folderName).getText();
+        Assert.assertEquals("folder not uploaded", expectedFolder, actualFolder);
     }
 
+    @When("user clicks the {string} item with {string} three dots button")
+    public void user_clicks_the_item_with_extension_three_dots_button( String fileName, String extension) {
+        uploadPage.clickThreeDotsButton(fileName,extension);
+        BrowserUtility.sleep(2);
+    }
+
+    @When("user clicks the move or copy")
+    public void user_clicks_the_move_or_copy() {
+        uploadPage.moveOrCopyButton.click();
+        BrowserUtility.sleep(2);
+    }
+
+    @When("user choose target folder {string}")
+    public void user_choose_target_folder(String createdFolder) {
+        uploadPage.targetFolder(createdFolder).click();
+        BrowserUtility.sleep(2);
+    }
+
+    @When("user choose the action {string}")
+    public void user_choose_the_button(String action) {
+        uploadPage.copyOrMoveAction(action);
+        BrowserUtility.sleep(2);
+    }
+
+    @When("user choose target2 folder {string}")
+    public void user_choose_target2_folder(String createdFolder) {
+        uploadPage.targetFolder2(createdFolder).click();
+        BrowserUtility.sleep(2);
+    }
+
+    @Then("user should see {string} file in target folder")
+    public void user_should_see_file_in_target_folder(String movedOrCopied) {
+        String expectedResult = movedOrCopied;
+        String actualResult = uploadPage.uploadedFileOrFolder(movedOrCopied).getText();
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @When("user clicks the delete item link")
+    public void user_clicks_the_delete_item_link() {
+        uploadPage.deleteAnyItem.click();
+        BrowserUtility.sleep(2);
+    }
+
+
+    @Then("{string} item deleted")
+    public void item_deleted(String selectedItem) {
+        List<WebElement> items = Driver.getDriver().findElements(By.xpath("//span[@class='innernametext']"));
+        for (WebElement item : items) {
+         Assert.assertTrue(item.getText()!=selectedItem);
+        }
+    }
 
 }
