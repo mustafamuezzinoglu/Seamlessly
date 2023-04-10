@@ -1,11 +1,10 @@
 package net.seamlessly.step_definitions;
 
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import net.seamlessly.utility.BrowserUtility;
+import io.cucumber.java.Scenario;
 import net.seamlessly.utility.ConfigurationReader;
 import net.seamlessly.utility.Driver;
-import io.cucumber.java.After;
-import io.cucumber.java.Scenario;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -34,10 +33,11 @@ public class Hooks {
         }
         Driver.closeDriver();
     }
+
     @After()
     public void closeBrowser(Scenario scenario) {
         if (!scenario.isFailed()) {
-        Driver.closeDriver();
+            Driver.closeDriver();
         }
     }
 }
