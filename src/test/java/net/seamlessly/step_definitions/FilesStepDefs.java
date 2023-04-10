@@ -4,7 +4,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.FilesPage;
+import net.seamlessly.utility.BrowserUtility;
+import net.seamlessly.utility.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 
 public class FilesStepDefs {
 	FilesPage filesPage=new FilesPage();
@@ -16,8 +21,9 @@ public class FilesStepDefs {
 		filesPage.clickMoreBtn(fileName);
 	}
 
-	@And("user clicks on remove from favorites button")
-	public void userClicksOnRemoveFromFavoritesButton() {
+
+	@And("user clicks on add to favorites button")
+	public void userClicksOnAddToFavoritesButton() {
 		filesPage.addToFavoritesBtn.click();
 	}
 
@@ -105,4 +111,5 @@ public class FilesStepDefs {
 		WebElement commentHere = Driver.getDriver().findElement(By.xpath("//div[.='" + comment + "']"));
 		Assert.assertFalse(commentHere.isDisplayed());
 	}
+
 }
