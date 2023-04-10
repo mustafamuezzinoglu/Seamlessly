@@ -17,7 +17,7 @@ public class FilesPage extends BasePage{
 	@FindBy(linkText = "Favorites")
 	public WebElement favoritesTabBtn;
 
-	@FindBy(xpath = "//a[@data-action='Rename']")
+	@FindBy(xpath = "//a[@data-action='Rename']//span[.='Rename']")
 	public WebElement renameBtn;
 
 	@FindBy(xpath = "//a[@data-action='Details']")
@@ -34,6 +34,9 @@ public class FilesPage extends BasePage{
 
 	@FindBy(xpath = "//a//span[.='Delete folder']")
 	public WebElement deleteButton;
+
+	@FindBy(xpath = "//a[.='All files']")
+	public WebElement allFilesTab;
 
 
 	public void createFolder(String fileName){
