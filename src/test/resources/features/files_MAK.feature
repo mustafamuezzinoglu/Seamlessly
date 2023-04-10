@@ -14,14 +14,14 @@ Feature: Files module functionalities
     Given user login with valid credentials
     And user navigates to "files" module
 
-  @SEAMLES10-656 @wip
+  @SEAMLES10-656 @wip #smoke
   Scenario: verify user add any file to favorites from its own three dots menu
     When user clicks on "Folder1" file three dots button
     And user clicks on add to favorites button
     And user clicks on favorites tab button
     Then user see starred "Folder1" file
 
-  @SEAMLES10-685 @wippp
+  @SEAMLES10-685 @wip
   Scenario: verify User can rename any file from its own three dots menu
     When user clicks on "Folder2" file three dots button
     And user clicks on Rename button
