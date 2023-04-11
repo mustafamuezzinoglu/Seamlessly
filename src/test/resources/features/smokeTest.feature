@@ -43,3 +43,11 @@
       And  User  select ending time and date
       And  User  click on Save  button
       Then User  should see new event on monthly calendar
+
+      #DELETE MODULE AMH
+    @SEAMLES10-616 #smoke
+      When user navigates to All_files page
+      And user creates and deletes "New Text Delete 1" and "New Text Delete 2" files
+      And user switches to Deleted_Files tab
+      And user sorts deleted files by newest to oldest
+      Then verify that user can see the last deleted "New Text Delete 2" file in the first line of the deleted file list

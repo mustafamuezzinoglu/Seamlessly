@@ -9,11 +9,11 @@ import org.junit.runner.RunWith;
         plugin = {"rerun:target/rerun.txt",
                 "html:target/cucumberReport.html",
                 "me.jvt.cucumber.report.PrettyReports:target/cucumber",
-                "json:target/cucumber/cucumber.json"
+                "json:target/cucumber.json",
         },
         features = "src/test/resources/features",
         glue = "net/seamlessly/step_definitions",
-        tags = "@smoke",
+        tags = "@SEAMLES10-659",
         stepNotifications = true,
         dryRun = false,
         publish = false
