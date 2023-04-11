@@ -44,7 +44,7 @@
       And  User  click on Save  button
       Then User  should see new event on monthly calendar
 
-      #DELETE MODULE AMH
+    #DELETE MODULE AMH
     @SEAMLES10-616 #smoke
       When user navigates to All_files page
       And user creates and deletes "New Text Delete 1" and "New Text Delete 2" files
