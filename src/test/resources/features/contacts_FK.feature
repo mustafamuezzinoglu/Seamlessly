@@ -22,4 +22,8 @@ Feature: Contacts Module
     Then a new contact should be created and added to the list of contacts
 
     Scenario: User change the profile picture
-      When user clicks
+      When user clicks on picture icon button
+      And user should see Choose from files option
+      And user select a picture
+      And user clicks on Choose button
+      Then a new profile picture should be changed
