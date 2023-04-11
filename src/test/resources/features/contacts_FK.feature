@@ -20,7 +20,7 @@ Feature: Contacts Module
     And user should see a form to enter contact information
     And user fills in the required fields
     Then a new contact should be created and added to the list of contacts
-
+@FK
     Scenario: User change the profile picture
       When user clicks on picture icon button
       And user should see Choose from files option
