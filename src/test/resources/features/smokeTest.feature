@@ -5,7 +5,7 @@ Feature: Seamlessly Smoke Test
     Given user login with valid credentials
 
 
-        #CALENDAR MODULE MUSATIK
+       #CALENDAR MODULE MUSATIK
   @SEAMLES10-613 #smoke
   Scenario: User  can create a new event  and see it on the calendar
     When user navigates to "Calendar" module
