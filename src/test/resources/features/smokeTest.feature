@@ -4,7 +4,7 @@ Feature: Seamlessly Smoke Test
   Background: user is on the Files module
     Given user login with valid credentials
 
-
+  @smoke
         #CALENDAR MODULE MUSATIK
   @SEAMLES10-613 #smoke
   Scenario: User  can create a new event  and see it on the calendar
