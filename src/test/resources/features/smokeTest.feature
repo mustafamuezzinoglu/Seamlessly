@@ -4,11 +4,11 @@ Feature: Seamlessly Smoke Test
   Background: user is on the Files module
     Given user login with valid credentials
 
-  @smoke
+
         #CALENDAR MODULE MUSATIK
   @SEAMLES10-613 #smoke
   Scenario: User  can create a new event  and see it on the calendar
-    When   user navigates to "Calendar" module
+    When user navigates to "Calendar" module
     And  User  select Monthly view calendar
     And  User  click on New event button
     And  User  input "Alumni Meeting" as a new event in placeholder
@@ -22,6 +22,7 @@ Feature: Seamlessly Smoke Test
 
      #DELETE MODULE AMH
   @SEAMLES10-616  #smoke
+  Scenario: User can see the most recent deleted file in the first line of the deleted file list when deleted files are ordered by newest to oldest
     When user navigates to All_files page
     And user creates and deletes "New Text Delete 1" and "New Text Delete 2" files
     And user switches to Deleted_Files tab

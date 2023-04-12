@@ -6,14 +6,15 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin = {"rerun:target/rerun.txt",
+        plugin = {
+                "rerun:target/rerun.txt",
                 "html:target/cucumberReport.html",
                 "me.jvt.cucumber.report.PrettyReports:target/cucumber",
                 "json:target/cucumber.json"
         },
         features = "src/test/resources/features",
         glue = "net/seamlessly/step_definitions",
-        tags = "",
+        tags = "@smoke",
         stepNotifications = true,
         dryRun = false,
         publish = false
