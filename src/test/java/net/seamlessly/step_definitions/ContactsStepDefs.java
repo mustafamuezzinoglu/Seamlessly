@@ -91,20 +91,17 @@ public class ContactsStepDefs {
     }
     @When("user clicks on the three dots button")
     public void user_clicks_on_the_three_dots_button() {
-      contactsPage.threeDotsBtn.click();
-      BrowserUtility.sleep(10);
+      contactsPage.threeDotsBttn.click();
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        wait.until(ExpectedConditions.visibilityOf(contactsPage.threeDotsBttn));
     }
-    @When("user clicks on the delete button")
+    @Then("user clicks on the delete button")
     public void user_clicks_on_the_delete_button() {
         contactsPage.deleteBtn.click();
-        BrowserUtility.sleep(10);
-    }
-    @Then("selected contact is deleted")
-    public void selected_contact_is_deleted() {
-
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        wait.until(ExpectedConditions.visibilityOf(contactsPage.deleteBtn));
+      
     }
 
+    }
 
-
-
-}

@@ -41,8 +41,8 @@ public class ContactsPage extends BasePage{
     @FindBy(css = "div[class$='avatar'] img")
     public WebElement contact;
 
-    @FindBy(css = "button[aria-controls='menu-qwqli'] span[class^='material-design-icon']")
-    public WebElement threeDotsBtn;
+    @FindBy(xpath = "(//span[@aria-label='Dots Horizontal icon'])[5]")
+    public WebElement threeDotsBttn;
 
     @FindBy(xpath = "/html/body/div[7]/div/div[1]/div[1]/div/ul/li[3]/button/span[2]")
     public WebElement deleteBtn;
