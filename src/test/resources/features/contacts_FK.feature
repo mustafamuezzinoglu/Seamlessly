@@ -1,3 +1,4 @@
+@SEAMLES10-690
 Feature: Contacts Module
   User Story :
 
@@ -27,7 +28,7 @@ Feature: Contacts Module
       And user select a picture
       And user clicks on Choose button
       Then a new profile picture should be changed
-     @FK
+   @SEAMLES10-689
      Scenario: User delete any selected contact
        When user selects a contact
        And user clicks on the three dots button
