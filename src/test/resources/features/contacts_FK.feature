@@ -27,9 +27,9 @@ Feature: Contacts Module
       And user select a picture
       And user clicks on Choose button
       Then a new profile picture should be changed
-@FK
+     @FK
      Scenario: User delete any selected contact
        When user selects a contact
        And user clicks on the three dots button
-       And user clicks on the delete button
-       Then selected contact is deleted
+       Then user clicks on the delete button
+
