@@ -3,7 +3,12 @@ package net.seamlessly.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class StatusPage extends BasePage{
+
+    @FindBy(css = "div.set-status-modal__online-status>div>label")
+    public List<WebElement> optionList;
 
     @FindBy(id= "expand")
     public WebElement menu;
@@ -14,28 +19,19 @@ public class StatusPage extends BasePage{
     @FindBy(xpath = "//div[@class='user-status-online-select'][2]")
     public WebElement awayOption;
 
-    @FindBy(xpath = "//div[@class='status-buttons']/button[@text='Set status message']")
+    @FindBy(xpath = "//div[@class='status-buttons']")
     public WebElement setStatusButton;
 
-    @FindBy(xpath = "//div[@class='predefined-statuses-list']/div[@class='predefined-status'][1]")
+    @FindBy(xpath = "//button[@class='button-vue button-vue--text-only button-vue--vue-tertiary button-vue--wide']")
+    public WebElement clearStatusButton;
+
+
+    @FindBy(xpath = "//div[@class='predefined-status'][2]")
     public WebElement statusMessageOptions;
 
     @FindBy(xpath = "//input[@placeholder='What is your status?']")
     public WebElement messagePlace;
 
 
-
-/*
-
- status options: //div[@class="user-status-online-select"]
-
-option away : //div[@class="user-status-online-select"]/label[@for='user-status-online-status-away']
-click set status message button: //div[@class='status-buttons']/button[@text='Set status message']
-
-control the changing status://a[@class='user-status-menu-item__toggle']
-
-default options set status: //input[@placeholder='What is your status?']
-
- */
 
 }
