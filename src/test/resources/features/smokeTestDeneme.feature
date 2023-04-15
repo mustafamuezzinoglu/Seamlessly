@@ -1,4 +1,4 @@
-@smoke
+
 Feature: Seamlessly Smoke Test
 
   @SEAMLES10-363  #smoke
