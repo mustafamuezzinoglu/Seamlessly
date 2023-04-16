@@ -1,11 +1,11 @@
-@smoke
+
 Feature: Seamlessly Smoke Test
 
   Background: user is on the Files module
     Given user login with valid credentials
 
        #CALENDAR MODULE MUSATIK
-  @SEAMLES10-613 #smoke
+  @smoke @SEAMLES10-613 #smoke
   Scenario: User  can create a new event  and see it on the calendar
     When user navigates to "Calendar" module
     And  User  select Monthly view calendar
@@ -17,10 +17,11 @@ Feature: Seamlessly Smoke Test
     Then User  should see new event on monthly calendar
 
       #CONTACTS MODULE FK
+
       #DECK MODULE IY
 
      #DELETE MODULE AMH
-  @SEAMLES10-616  #smoke
+  @smoke @SEAMLES10-616  #smoke
   Scenario: User can see the most recent deleted file in the first line of the deleted file list when deleted files are ordered by newest to oldest
     When user navigates to All_files page
     And user creates and deletes "New Text Delete 1" and "New Text Delete 2" files
@@ -29,7 +30,7 @@ Feature: Seamlessly Smoke Test
     Then verify that user can see the last deleted "New Text Delete 2" file in the first line of the deleted file list
 
       #FILES MODULE MAK
-  @SEAMLES10-656 #smoke
+  @smoke @SEAMLES10-656 #smoke
   Scenario: verify user add any file to favorites from its own three dots menu
     When user navigates to "files" module
     And user clicks on "Folder1" file three dots button
@@ -43,7 +44,7 @@ Feature: Seamlessly Smoke Test
     #SEARCH MODULE ST
 
        #TASKS MODULE MAKKAYA
-  @SEAMLES10-679 #smoke
+  @smoke @SEAMLES10-679 #smoke
   Scenario: User can create a new task
     When user navigates to "tasks" module
     And user clicks Add List…
@@ -52,7 +53,7 @@ Feature: Seamlessly Smoke Test
     Then verify that user sees "new task" in the task list
 
     #UPLOAD MODULE MM
-  @SEAMLES10-650 #smoke
+  @smoke @SEAMLES10-650 #smoke
   Scenario: User can see the total number of files and folders under the files list table
     When user navigates to "files" module
     And user upload "selenium notlarim" with ".txt"
