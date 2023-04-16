@@ -17,6 +17,7 @@ Feature: Seamlessly Smoke Test
     Then User  should see new event on monthly calendar
 
       #CONTACTS MODULE FK
+
       #DECK MODULE IY
 
      #DELETE MODULE AMH
