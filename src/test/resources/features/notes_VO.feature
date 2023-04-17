@@ -14,7 +14,7 @@ Feature: notes module feature
     And user write notes to note area
     Then user should see the new note title at the left console
 
-  #Acceptance Criteria:**
+  #Acceptance Criteria:***
   #2- User can add any note to the favorites
 
   Scenario: verify that user can add any note to the favorites
