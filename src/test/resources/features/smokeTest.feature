@@ -1,4 +1,4 @@
-
+ @smoke
 Feature: Seamlessly Smoke Test
 
   Background: user is on the Files module
