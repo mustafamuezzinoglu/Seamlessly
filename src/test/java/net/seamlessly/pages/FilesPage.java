@@ -38,7 +38,6 @@ public class FilesPage extends BasePage{
 	@FindBy(xpath = "//a[.='All files']")
 	public WebElement allFilesTab;
 
-
 	public void createFolder(String fileName){
 		uploadPage.plusButton.click();
 

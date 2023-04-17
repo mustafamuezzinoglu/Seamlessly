@@ -83,5 +83,25 @@ public class ContactsStepDefs {
         Assert.assertTrue(contactsPage.newProfilePicture.isDisplayed());
 
     }
+    @When("user selects a contact")
+    public void user_selects_a_contact() {
+       contactsPage.contact.click();
+       BrowserUtility.sleep(10);
 
-}
+    }
+    @When("user clicks on the three dots button")
+    public void user_clicks_on_the_three_dots_button() {
+      contactsPage.threeDotsBttn.click();
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        wait.until(ExpectedConditions.visibilityOf(contactsPage.threeDotsBttn));
+    }
+    @Then("user clicks on the delete button")
+    public void user_clicks_on_the_delete_button() {
+        contactsPage.deleteBtn.click();
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        wait.until(ExpectedConditions.visibilityOf(contactsPage.deleteBtn));
+      
+    }
+
+    }
+

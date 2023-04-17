@@ -34,11 +34,14 @@ public class LoginStepDefs {
     @When("user writes valid username")
     public void userWritesValidUsername() {
         loginPage.userName.sendKeys("Employee170");
+        BrowserUtility.sleep(2);
+
     }
 
     @And("user writes valid password")
     public void userWritesValidPassword() {
         loginPage.inputPassword.sendKeys("Employee123");
+        BrowserUtility.sleep(2);
     }
 
     @When("user presses enter key")
