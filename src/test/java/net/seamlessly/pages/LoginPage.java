@@ -1,5 +1,6 @@
 package net.seamlessly.pages;
 
+import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.ConfigurationReader;
 import net.seamlessly.utility.Driver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,7 @@ public class LoginPage {
     public LoginPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
+
     @FindBy(id="user")
     public WebElement userName;
 
@@ -20,6 +22,7 @@ public class LoginPage {
     @FindBy(id = "submit-form")
     public WebElement loginButton;
     public void login(String username, String password) {
+        BrowserUtility.scrollToElement(userName);
         userName.sendKeys(username);
         inputPassword.sendKeys(password);
         loginButton.click();
@@ -42,7 +45,6 @@ public class LoginPage {
 
     @FindBy(xpath = "//a[@class='toggle-password']")
     public WebElement passwordEye;
-
 
     @FindBy(css = "p.warning.wrongPasswordMsg")
     public WebElement wrongPassword;

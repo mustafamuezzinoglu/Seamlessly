@@ -19,7 +19,6 @@ public class LoginStepDefs {
         Driver.getDriver().get(ConfigurationReader.getProperty("URL"));
     }
 
-
     @Then("user sees dashboard")
     public void userSeesDashboard() {
         Assert.assertTrue(Driver.getDriver().getTitle().toLowerCase().contains("dashboard"));
@@ -33,11 +32,14 @@ public class LoginStepDefs {
     @When("user writes valid username")
     public void userWritesValidUsername() {
         loginPage.userName.sendKeys("Employee170");
+        BrowserUtility.sleep(2);
+
     }
 
     @And("user writes valid password")
     public void userWritesValidPassword() {
         loginPage.inputPassword.sendKeys("Employee123");
+        BrowserUtility.sleep(2);
     }
 
     @When("user presses enter key")
