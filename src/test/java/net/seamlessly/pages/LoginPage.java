@@ -3,6 +3,7 @@ package net.seamlessly.pages;
 import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.ConfigurationReader;
 import net.seamlessly.utility.Driver;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -24,8 +25,7 @@ public class LoginPage {
     public void login(String username, String password) {
         BrowserUtility.scrollToElement(userName);
         userName.sendKeys(username);
-        inputPassword.sendKeys(password);
-        loginButton.click();
+        inputPassword.sendKeys(password + Keys.ENTER);
     }
 
     @FindBy(css = "a#lost-password")
