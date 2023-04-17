@@ -1,5 +1,6 @@
 package net.seamlessly.pages;
 
+import net.seamlessly.utility.BrowserUtility;
 import net.seamlessly.utility.ConfigurationReader;
 import net.seamlessly.utility.Driver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class LoginPage {
     @FindBy(id = "submit-form")
     public WebElement loginButton;
     public void login(String username, String password) {
+
         userName.sendKeys(username);
         inputPassword.sendKeys(password);
         loginButton.click();
