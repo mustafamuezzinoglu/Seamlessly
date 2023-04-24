@@ -15,7 +15,7 @@ import java.util.List;
 public class UploadStepDefs {
 
     UploadPage uploadPage = new UploadPage();
-
+    String globalFileName;
     @When("user clicks the + button")
     public void user_clicks_the_button() {
         uploadPage.plusButton.click();
@@ -31,6 +31,8 @@ public class UploadStepDefs {
         BrowserUtility.sleep(3);
         uploadPage.plusButton.click();
         BrowserUtility.sleep(3);
+
+        globalFileName=fileName;
 
 /*
 //   also you can below codes to use windows explorer window:
@@ -49,10 +51,11 @@ public class UploadStepDefs {
 */
     }
 
-    @Then("user should see {string} file")
-    public void user_should_see_file(String file) {
-        String expectedFile = file;
-        String actualFile = uploadPage.uploadedFileOrFolder(file).getText();
+    @Then("user should see uploaded file")
+    public void user_should_see_uploaded_file() {
+
+        String expectedFile = globalFileName;
+        String actualFile = uploadPage.uploadedFileOrFolder(globalFileName).getText();
         Assert.assertEquals("file not uploaded", expectedFile, actualFile);
     }
 

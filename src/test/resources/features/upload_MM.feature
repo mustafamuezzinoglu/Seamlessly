@@ -21,7 +21,7 @@ Feature: seamlessly upload function
   Scenario:  User can upload a file
     When user clicks the + button
     And user clicks the uploadFile link to upload "selenium notlarim" with ".txt"
-    Then user should see "selenium notlarim" file
+    Then user should see uploaded file
 
   @wipp @SEAMLES10-647 #ac2
   Scenario: User can create a new folder
