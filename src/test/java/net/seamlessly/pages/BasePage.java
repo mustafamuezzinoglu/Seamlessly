@@ -13,6 +13,7 @@ public abstract class BasePage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
+
     public void navigateToModule(String moduleName) {
         WebElement module = Driver.getDriver().findElement(By.xpath("//li[@data-id='" + moduleName.toLowerCase() + "' and @tabindex='-1']/a"));
         BrowserUtility.waitForVisibility(module,10);
